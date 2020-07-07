@@ -2,7 +2,7 @@ export default class Logger {
   description: string
   sheet_id: string
   sheet_page_name: string
-  format: string
+  logfmt: string
   datefmt: string
   level: string
 
@@ -12,8 +12,8 @@ export default class Logger {
       '這是一個Logger，用法請看https://github.com/we684123/Google_Apps_Script_Logger'
     this.sheet_id = ''
     this.sheet_page_name = "Log",
-      this.format =
-      '%{asctime} %{name} %{levelname} %{module}: %{message}',
+      this.logfmt =
+      '%{datefmt} %{user} %{levelname} : %{message}',
       this.datefmt = "yyyy.MM.dd G 'at' HH:mm:ss z",
       // 格式設定看這裡
       // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
@@ -24,7 +24,7 @@ export default class Logger {
     return `
     sheet_id = ${this.sheet_id}
     sheet_page_name = ${this.sheet_page_name}
-    format = ${this.format}
+    logfmt = ${this.logfmt}
     datefmt = ${this.datefmt}
     level = ${this.level}
     `
@@ -33,14 +33,14 @@ export default class Logger {
   public set_config(
     sheet_id: string,
     sheet_page_name: string = "Log",
-    format: string =
-      '%{asctime} %{name} %{levelname} %{module}: %{message}',
+    logfmt: string =
+      '%{datefmt} %{user} %{levelname} : %{message}',
     datefmt: string = "yyyy.MM.dd G 'at' HH:mm:ss z",
     level: string = 'WARNING'
   ): void {
     this.sheet_id = sheet_id
     this.sheet_page_name = sheet_page_name
-    this.format = format
+    this.logfmt = logfmt
     this.datefmt = datefmt
     this.level = level
   }
@@ -57,10 +57,10 @@ export default class Logger {
     this.sheet_page_name = sheet_page_name
   }
 
-  public set_format(
-    format: string,
+  public set_logfmt(
+    logfmt: string,
   ): void {
-    this.format = format
+    this.logfmt = logfmt
   }
 
   public set_datefmt(
@@ -75,7 +75,7 @@ export default class Logger {
     this.level = level
   }
 
-  public log(level: string | Number, text: string) {
+  public log(level_label: string | Number, text: string) {
     const enum Levels {
       CRITICAL = 50,
       ERROR = 40,
@@ -85,25 +85,32 @@ export default class Logger {
       NOTSET = 0
     }
 
-    const handle_level = (action: Levels): void => {
-      switch (action) {
+    const handle_level = (level_label: Levels): void => {
+
+      switch (level_label) {
         case Levels.CRITICAL:
 
+          console.error();
+          msg(level_label, text)
           break;
         case Levels.ERROR:
-
+          level_label = ''
+          console.error();
           break;
         case Levels.WARNING:
-
+          level_label = ''
+          console.warn();
           break;
         case Levels.INFO:
-
+          level_label = ''
+          console.info();
           break;
         case Levels.DEBUG:
-
+          level_label = ''
+          console.info();
           break;
         case Levels.NOTSET:
-
+          console.info();
           break;
         default:
           throw (new Error('No have status code!'));
@@ -111,4 +118,36 @@ export default class Logger {
     };
 
   }
+  private msg(level: string, text: string) {
+    let formattedDate = Utilities.formatDate(
+      new Date(), "GMT", this.datefmt
+    )
+
+    var user = Session.getActiveUser().getEmail();
+    let t = this.logfmt.format()
+  }
+}
+
+function format() {
+
+}
+
+
+
+String.prototype.format = function () {
+  var txt = this.toString();
+  for (var i = 0; i < arguments.length; i++) {
+    var exp = getStringFormatPlaceHolderRegEx(i);
+    arguments[i] = String(arguments[i]).replace(/\$/gm, '♒☯◈∭')
+    txt = txt.replace(exp, (arguments[i] == null ? "" : arguments[i]));
+    txt = txt.replace(/♒☯◈∭/gm, '$')
+  }
+  return cleanStringFormatResult(txt);
+}
+function getStringFormatPlaceHolderRegEx(placeHolderIndex) {
+  return new RegExp('({)?\\{' + placeHolderIndex + '\\}(?!})', 'gm')
+}
+function cleanStringFormatResult(txt) {
+  if (txt == null) return "";
+  return txt.replace(getStringFormatPlaceHolderRegEx("\\d+"), "");
 }
