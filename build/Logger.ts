@@ -132,6 +132,17 @@ function format() {
 
 }
 
+declare interface String {
+  format(length: string): string;
+}
+
+String.prototype.padZero = function (this: string, length: number) {
+  var s = this;
+  while (s.length < length) {
+    s = '0' + s;
+  }
+  return s;
+};
 
 
 String.prototype.format = function () {
@@ -144,7 +155,7 @@ String.prototype.format = function () {
   }
   return cleanStringFormatResult(txt);
 }
-function getStringFormatPlaceHolderRegEx(placeHolderIndex) {
+function getStringFormatPlaceHolderRegEx(placeHolderIndex: any) {
   return new RegExp('({)?\\{' + placeHolderIndex + '\\}(?!})', 'gm')
 }
 function cleanStringFormatResult(txt) {
