@@ -1,3 +1,6 @@
+import './t1.ts'
+
+
 export default class Logger {
   description: string
   sheet_id: string
@@ -89,28 +92,22 @@ export default class Logger {
 
       switch (level_label) {
         case Levels.CRITICAL:
-
-          console.error();
-          msg(level_label, text)
+          console.error(this.ass_msg('CRITICAL', text));
           break;
         case Levels.ERROR:
-          level_label = ''
-          console.error();
+          console.error(this.ass_msg('ERROR', text));
           break;
         case Levels.WARNING:
-          level_label = ''
-          console.warn();
+          console.warn(this.ass_msg('WARNING', text));
           break;
         case Levels.INFO:
-          level_label = ''
-          console.info();
+          console.info(this.ass_msg('INFO', text));
           break;
         case Levels.DEBUG:
-          level_label = ''
-          console.info();
+          console.info(this.ass_msg('DEBUG', text));
           break;
         case Levels.NOTSET:
-          console.info();
+          console.info(this.ass_msg('NOTSET', text));
           break;
         default:
           throw (new Error('No have status code!'));
@@ -118,12 +115,16 @@ export default class Logger {
     };
 
   }
-  private msg(level: string, text: string) {
+  private ass_msg(levelname: string, message: string) {
     let formattedDate = Utilities.formatDate(
       new Date(), "GMT", this.datefmt
     )
-
     var user = Session.getActiveUser().getEmail();
-    let t = this.logfmt.format()
+
+    return this.logfmt
+      .replace(/%{datefmt}/g, formattedDate)
+      .replace(/%{user}/g, user)
+      .replace(/%{levelname}/g, levelname)
+      .replace(/%{message}/g, message)
   }
 }

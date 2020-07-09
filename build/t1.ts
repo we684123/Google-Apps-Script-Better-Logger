@@ -12,5 +12,5 @@ if (!String.prototype.format) {
     };
 }
 
-let b = '{0}:{1}'.format('ab', 'rr $15 h')
-console.log(b);
+// let b = '{0}:{1}'.format('ab', 'rr $15 h')
+// console.log(b);
