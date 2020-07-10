@@ -1,5 +1,3 @@
-import './t1.ts'
-
 const enum Levels {
   CRITICAL = 50,
   ERROR = 40,
@@ -19,7 +17,9 @@ export default class Logger {
   level: number
   user: string
   Levels: Levels
-
+  use_sheet: boolean
+  use_console: boolean
+  sheet_log_slice: boolean
 
   constructor() {
     this.description =
@@ -28,12 +28,16 @@ export default class Logger {
     this.sheet_page_name = "Log"
     this.logfmt =
       '%{datefmt} - %{user} - %{levelname} : %{message}'
+    // 暫時只有這四個
     this.datefmt = "yyyy.MM.dd HH:mm:ss z"
     // 格式設定看這裡
     // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
     this.level_label = 'WARNING'
     this.level = this.get_level_number(this.level_label)
     this.user = Session.getActiveUser().getEmail();
+    this.use_sheet = false
+    this.use_console = true
+    this.sheet_log_slice = true
   }
 
   public get_config(): string {
@@ -44,6 +48,9 @@ export default class Logger {
     datefmt = ${this.datefmt}
     level = ${this.level}
     level_label = ${this.level_label}
+    use_sheet = ${this.use_sheet}
+    use_console = ${this.use_console}
+    sheet_log_slice = ${this.sheet_log_slice}
     `
   }
 
@@ -62,36 +69,41 @@ export default class Logger {
     this.level = level
     this.level_label = 'WARNING'
     this.level = this.get_level_number(this.level_label)
+    this.use_sheet = false
+    this.use_console = true
+    this.sheet_log_slice = true
   }
 
-  public set_sheet_id(
-    sheet_id: string,
-  ): void {
+  public set_sheet_id(sheet_id: string): void {
     this.sheet_id = sheet_id
   }
 
-  public set_sheet_page_name(
-    sheet_page_name: string,
-  ): void {
+  public set_sheet_page_name(sheet_page_name: string): void {
     this.sheet_page_name = sheet_page_name
   }
 
-  public set_logfmt(
-    logfmt: string,
-  ): void {
+  public set_logfmt(logfmt: string): void {
     this.logfmt = logfmt
   }
 
-  public set_datefmt(
-    datefmt: string,
-  ): void {
+  public set_datefmt(datefmt: string): void {
     this.datefmt = datefmt
   }
 
-  public set_level(
-    level: string,
-  ): void {
+  public set_level(level: string): void {
     this.level = this.get_level_number(level)
+  }
+
+  public set_use_sheet(boolean: boolean) {
+    this.use_sheet = boolean
+  }
+
+  public set_use_console(boolean: boolean) {
+    this.use_console = boolean
+  }
+
+  public set_sheet_log_slice(boolean: boolean) {
+    this.sheet_log_slice = boolean
   }
 
   public log(level_label: Levels, text: string) {
@@ -100,7 +112,32 @@ export default class Logger {
         case Levels.CRITICAL:
           // console.log(Levels.CRITICAL, this.level)
           if (Number(Levels.CRITICAL) >= Number(this.level)) {
-            console.error(this.ass_msg('CRITICAL', text));
+            if (this.use_console) {
+              console.error(this.ass_msg('CRITICAL', text));
+            }
+            if (this.use_sheet) {
+              let wt: string[]
+              if (this.sheet_log_slice) {
+                wt = []
+                let regexp = /%{([^\{\}]+)}/gi
+                let matches_array = this.logfmt.match(regexp);
+                for (let value of matches_array) {
+                  if (value == "%{datefmt}") {
+                    wt.push(this.get_fmtdate())
+                  } else if (value == "%{user}") {
+                    wt.push(this.user)
+                  } else if (value == "%{levelname}") {
+                    wt.push('CRITICAL')
+                  } else if (value == "%{message}") {
+                    wt.push(text)
+                  }
+                }
+              } else {
+                wt = [this.ass_msg('CRITICAL', text)]
+              }
+              this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt)
+            }
+
           }
           break;
         case Levels.ERROR:
@@ -171,9 +208,7 @@ export default class Logger {
   }
 
   private ass_msg(levelname: string, message: string) {
-    let formattedDate = Utilities.formatDate(
-      new Date(), "GMT", this.datefmt
-    )
+    let formattedDate = this.get_fmtdate()
 
     return this.logfmt
       .replace(/%{datefmt}/g, formattedDate)
@@ -181,6 +216,11 @@ export default class Logger {
       .replace(/%{levelname}/g, levelname)
       .replace(/%{message}/g, message)
   }
+
+  private get_fmtdate() {
+    return Utilities.formatDate(new Date(), "GMT", this.datefmt)
+  }
+
   private get_level_number(level_label: string) {
     switch (level_label) {
       case 'CRITICAL':
@@ -198,5 +238,19 @@ export default class Logger {
       default:
         throw (new Error('Is not allow level_label!'));
     }
+  }
+
+  private log_by_sheet(
+    sheet_key: string,
+    page: string = 'log',
+    text_array: string[] = []
+  ) {
+    const SpreadSheet = SpreadsheetApp.openById(sheet_key);
+    const sheet = SpreadSheet.getSheetByName(page);
+    let SheetLastRow = sheet.getLastRow();
+    let LastRow_next = Number(SheetLastRow) + 1
+    let len_text_array = text_array.length
+
+    sheet.getRange(LastRow_next, 1, len_text_array, 1).setValues([text_array]);
   }
 }
