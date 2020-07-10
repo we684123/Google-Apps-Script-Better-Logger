@@ -1,5 +1,13 @@
 import './t1.ts'
 
+const enum Levels {
+  CRITICAL = 50,
+  ERROR = 40,
+  WARNING = 30,
+  INFO = 20,
+  DEBUG = 10,
+  NOTSET = 0
+}
 
 export default class Logger {
   description: string
@@ -7,20 +15,25 @@ export default class Logger {
   sheet_page_name: string
   logfmt: string
   datefmt: string
-  level: string
+  level_label: string
+  level: number
+  user: string
+  Levels: Levels
 
 
   constructor() {
     this.description =
       '這是一個Logger，用法請看https://github.com/we684123/Google_Apps_Script_Logger'
     this.sheet_id = ''
-    this.sheet_page_name = "Log",
-      this.logfmt =
-      '%{datefmt} %{user} %{levelname} : %{message}',
-      this.datefmt = "yyyy.MM.dd G 'at' HH:mm:ss z",
-      // 格式設定看這裡
-      // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
-      this.level = 'WARNING'
+    this.sheet_page_name = "Log"
+    this.logfmt =
+      '%{datefmt} - %{user} - %{levelname} : %{message}'
+    this.datefmt = "yyyy.MM.dd HH:mm:ss z"
+    // 格式設定看這裡
+    // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+    this.level_label = 'WARNING'
+    this.level = this.get_level_number(this.level_label)
+    this.user = Session.getActiveUser().getEmail();
   }
 
   public get_config(): string {
@@ -30,6 +43,7 @@ export default class Logger {
     logfmt = ${this.logfmt}
     datefmt = ${this.datefmt}
     level = ${this.level}
+    level_label = ${this.level_label}
     `
   }
 
@@ -39,13 +53,15 @@ export default class Logger {
     logfmt: string =
       '%{datefmt} %{user} %{levelname} : %{message}',
     datefmt: string = "yyyy.MM.dd G 'at' HH:mm:ss z",
-    level: string = 'WARNING'
+    level: number = 30
   ): void {
     this.sheet_id = sheet_id
     this.sheet_page_name = sheet_page_name
     this.logfmt = logfmt
     this.datefmt = datefmt
     this.level = level
+    this.level_label = 'WARNING'
+    this.level = this.get_level_number(this.level_label)
   }
 
   public set_sheet_id(
@@ -75,56 +91,112 @@ export default class Logger {
   public set_level(
     level: string,
   ): void {
-    this.level = level
+    this.level = this.get_level_number(level)
   }
 
-  public log(level_label: string | Number, text: string) {
-    const enum Levels {
-      CRITICAL = 50,
-      ERROR = 40,
-      WARNING = 30,
-      INFO = 20,
-      DEBUG = 10,
-      NOTSET = 0
-    }
-
-    const handle_level = (level_label: Levels): void => {
-
+  public log(level_label: Levels, text: string) {
+    const handle_level = (level_label: Levels, text: string): void => {
       switch (level_label) {
         case Levels.CRITICAL:
-          console.error(this.ass_msg('CRITICAL', text));
+          // console.log(Levels.CRITICAL, this.level)
+          if (Number(Levels.CRITICAL) >= Number(this.level)) {
+            console.error(this.ass_msg('CRITICAL', text));
+          }
           break;
         case Levels.ERROR:
-          console.error(this.ass_msg('ERROR', text));
+          // console.log(Levels.ERROR, this.level)
+          if (Number(Levels.ERROR) >= Number(this.level)) {
+            console.error(this.ass_msg('ERROR', text));
+          }
           break;
         case Levels.WARNING:
-          console.warn(this.ass_msg('WARNING', text));
+          // console.log(Levels.WARNING, this.level)
+          if (Number(Levels.WARNING) >= Number(this.level)) {
+            console.warn(this.ass_msg('WARNING', text));
+          }
           break;
         case Levels.INFO:
-          console.info(this.ass_msg('INFO', text));
+          // console.log(Levels.INFO, this.level)
+          if (Number(Levels.INFO) >= Number(this.level)) {
+            console.info(this.ass_msg('INFO', text));
+          }
           break;
         case Levels.DEBUG:
-          console.info(this.ass_msg('DEBUG', text));
+          // console.log(Levels.DEBUG, this.level)
+          if (Number(Levels.DEBUG) >= Number(this.level)) {
+            console.info(this.ass_msg('DEBUG', text));
+          }
           break;
         case Levels.NOTSET:
-          console.info(this.ass_msg('NOTSET', text));
+          // console.log(Levels.NOTSET, this.level)
+          if (Number(Levels.NOTSET) >= Number(this.level)) {
+            console.info(this.ass_msg('NOTSET', text));
+          }
           break;
         default:
           throw (new Error('No have status code!'));
       }
-    };
-
+    }
+    handle_level(level_label, text)
   }
+  public critical(text: string) {
+    if (Number(Levels.CRITICAL) >= Number(this.level)) {
+      console.error(this.ass_msg('CRITICAL', text));
+    }
+  }
+  public error(text: string) {
+    if (Number(Levels.ERROR) >= Number(this.level)) {
+      console.error(this.ass_msg('ERROR', text));
+    }
+  }
+  public warning(text: string) {
+    if (Number(Levels.WARNING) >= Number(this.level)) {
+      console.warn(this.ass_msg('WARNING', text));
+    }
+  }
+  public info(text: string) {
+    if (Number(Levels.INFO) >= Number(this.level)) {
+      console.info(this.ass_msg('INFO', text));
+    }
+  }
+  public debug(text: string) {
+    if (Number(Levels.DEBUG) >= Number(this.level)) {
+      console.info(this.ass_msg('DEBUG', text));
+    }
+  }
+  public notest(text: string) {
+    if (Number(Levels.NOTSET) >= Number(this.level)) {
+      console.info(this.ass_msg('NOTSET', text));
+    }
+  }
+
   private ass_msg(levelname: string, message: string) {
     let formattedDate = Utilities.formatDate(
       new Date(), "GMT", this.datefmt
     )
-    var user = Session.getActiveUser().getEmail();
 
     return this.logfmt
       .replace(/%{datefmt}/g, formattedDate)
-      .replace(/%{user}/g, user)
+      .replace(/%{user}/g, this.user)
       .replace(/%{levelname}/g, levelname)
       .replace(/%{message}/g, message)
+  }
+  private get_level_number(level_label: string) {
+    switch (level_label) {
+      case 'CRITICAL':
+        return 50
+      case 'ERROR':
+        return 40
+      case 'WARNING':
+        return 30
+      case 'INFO':
+        return 20
+      case 'DEBUG':
+        return 10
+      case 'NOTSET':
+        return 0
+      default:
+        throw (new Error('Is not allow level_label!'));
+    }
   }
 }

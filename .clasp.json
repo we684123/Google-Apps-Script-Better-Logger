@@ -1,5 +1,6 @@
 {
   "scriptId": "1Wy69JBZHDpq2jPfH-gMIWtqnlpnZwcVkK2KudVbt1Gx_8KxRtI7Y0nyB",
   "fileExtension": "ts",
-  "rootDir": "build/"
+  "rootDir": "build/",
+  "filePushOrder": ["test.ts"]
 }
