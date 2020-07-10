@@ -11,8 +11,9 @@ function t1() {
   console.log("---------------------");
 
   let logger = new Logger()
-  logger.set_sheet_id("1zaZDmDaIzhH0gjWTkz6I620hzOIskX03zuPDdMm2CLc")
-  logger.set_level('INFO')
+  logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
+  logger.set_level('WARNING')
+  logger.set_use_sheet(true)
 
   console.log(logger.get_config())
   logger.log(Levels.CRITICAL, '這是測試')

@@ -110,6 +110,8 @@ export default class Logger {
     const handle_level = (level_label: Levels, text: string): void => {
       switch (level_label) {
         case Levels.CRITICAL:
+          console.log('進來了');
+
           // console.log(Levels.CRITICAL, this.level)
           if (Number(Levels.CRITICAL) >= Number(this.level)) {
             if (this.use_console) {
@@ -245,12 +247,17 @@ export default class Logger {
     page: string = 'log',
     text_array: string[] = []
   ) {
+
     const SpreadSheet = SpreadsheetApp.openById(sheet_key);
-    const sheet = SpreadSheet.getSheetByName(page);
+    let sheet = SpreadSheet.getSheetByName(page);
+    if (sheet == null) {
+      sheet = SpreadSheet.insertSheet(page)
+      console.log(`creat a page (name = "${page}")`);
+    }
     let SheetLastRow = sheet.getLastRow();
     let LastRow_next = Number(SheetLastRow) + 1
     let len_text_array = text_array.length
+    sheet.getRange(LastRow_next, 1, 1, len_text_array).setValues([text_array]);
 
-    sheet.getRange(LastRow_next, 1, len_text_array, 1).setValues([text_array]);
   }
 }
