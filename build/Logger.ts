@@ -12,13 +12,14 @@ export default class Logger {
   sheet_id: string
   sheet_page_name: string
   logfmt: string
-  GMT:string
+  GMT: string
   datefmt: string
   level_label: string
   level: number
   user: string
   Levels: Levels
   levels: object
+  levels_colors: object
   use_sheet: boolean
   use_console: boolean
   sheet_log_slice: boolean
@@ -41,7 +42,15 @@ export default class Logger {
       'WARNING': Levels['WARNING'],
       'INFO': Levels['INFO'],
       'DEBUG': Levels['DEBUG'],
-      'NOTSET': Levels['NOTSET'],
+      'NOTSET': Levels['NOTSET']
+    }
+    this.levels_colors = {
+      'CRITICAL': "#e06666",
+      'ERROR': "#f6b26b",
+      'WARNING': "#ffe599",
+      'INFO': "#93c47d",
+      'DEBUG': "#76a5af",
+      'NOTSET': "#9fc5e8",
     }
     this.level_label = 'WARNING'
     this.level = this.get_level_number(this.level_label)
@@ -74,7 +83,7 @@ export default class Logger {
     sheet_page_name: string = "Log",
     logfmt: string =
       '%{datefmt} %{user} %{levelname} : %{message}',
-    GMT:string,
+    GMT: string,
     datefmt: string = "yyyy.MM.dd G 'at' HH:mm:ss z",
     level: number = 30
   ): void {
@@ -228,7 +237,8 @@ export default class Logger {
   private log_by_sheet(
     sheet_key: string,
     page: string = 'log',
-    text_array: string[] = []
+    text_array: string[] = [],
+    level_label: string
   ) {
 
     const SpreadSheet = SpreadsheetApp.openById(sheet_key);
@@ -240,7 +250,12 @@ export default class Logger {
     let SheetLastRow = sheet.getLastRow();
     let LastRow_next = Number(SheetLastRow) + 1
     let len_text_array = text_array.length
-    sheet.getRange(LastRow_next, 1, 1, len_text_array).setValues([text_array]);
+    let color = this.levels_colors[level_label]
+
+    sheet
+      .getRange(LastRow_next, 1, 1, len_text_array)
+      .setValues([text_array])
+      .setBackground(color)
 
   }
 
@@ -269,7 +284,7 @@ export default class Logger {
         } else {
           wt = [this.ass_msg(level_label, text)]
         }
-        this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt)
+        this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt, level_label)
       }
     }
   }
