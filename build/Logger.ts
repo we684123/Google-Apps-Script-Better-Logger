@@ -171,34 +171,23 @@ export default class Logger {
     handle_level(level_label, text)
   }
   public critical(text: string) {
-    if (Number(Levels.CRITICAL) >= Number(this.level)) {
-      console.error(this.ass_msg('CRITICAL', text));
-    }
+    this.do_log(Levels.CRITICAL, 'CRITICAL', text)
   }
   public error(text: string) {
-    if (Number(Levels.ERROR) >= Number(this.level)) {
-      console.error(this.ass_msg('ERROR', text));
-    }
+    this.do_log(Levels.ERROR, 'ERROR', text)
   }
   public warning(text: string) {
-    if (Number(Levels.WARNING) >= Number(this.level)) {
-      console.warn(this.ass_msg('WARNING', text));
-    }
+    this.do_log(Levels.WARNING, 'WARNING', text)
   }
   public info(text: string) {
-    if (Number(Levels.INFO) >= Number(this.level)) {
-      console.info(this.ass_msg('INFO', text));
-    }
+    this.do_log(Levels.DEBUG, 'DEBUG', text)
+
   }
   public debug(text: string) {
-    if (Number(Levels.DEBUG) >= Number(this.level)) {
-      console.info(this.ass_msg('DEBUG', text));
-    }
+    this.do_log(Levels.DEBUG, 'DEBUG', text)
   }
   public notest(text: string) {
-    if (Number(Levels.NOTSET) >= Number(this.level)) {
-      console.info(this.ass_msg('NOTSET', text));
-    }
+    this.do_log(Levels.NOTSET, 'NOTSET', text)
   }
 
   private ass_msg(levelname: string, message: string) {
