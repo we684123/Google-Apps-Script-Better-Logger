@@ -1,12 +1,12 @@
 import Logger from "./Logger.ts";
-const enum Levels {
-  CRITICAL = 50,
-  ERROR = 40,
-  WARNING = 30,
-  INFO = 20,
-  DEBUG = 10,
-  NOTSET = 0
-}
+// const enum Levels {
+//   CRITICAL = 50,
+//   ERROR = 40,
+//   WARNING = 30,
+//   INFO = 20,
+//   DEBUG = 10,
+//   NOTSET = 0
+// }
 function t1() {
   console.log("---------------------");
 
@@ -16,12 +16,12 @@ function t1() {
   logger.set_use_sheet(true)
 
   console.log(logger.get_config())
-  logger.log(Levels.CRITICAL, '這是測試')
-  logger.log(Levels.ERROR, '這是測試')
-  logger.log(Levels.WARNING, '這是測試')
-  logger.log(Levels.DEBUG, '這是測試')
-  logger.log(Levels.INFO, '這是測試')
-  logger.log(Levels.NOTSET, '這是測試')
+  logger.log(logger.levels.CRITICAL, '這是測試')
+  logger.log(logger.levels.ERROR, '這是測試')
+  logger.log(logger.levels.WARNING, '這是測試')
+  logger.log(logger.levels.DEBUG, '這是測試')
+  logger.log(logger.levels.INFO, '這是測試')
+  logger.log(logger.levels.NOTSET, '這是測試')
   logger.critical('t1231')
   logger.error('t1231')
   logger.warning('t1231')

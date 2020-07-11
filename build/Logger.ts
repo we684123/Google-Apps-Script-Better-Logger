@@ -17,6 +17,7 @@ export default class Logger {
   level: number
   user: string
   Levels: Levels
+  levels:object
   use_sheet: boolean
   use_console: boolean
   sheet_log_slice: boolean
@@ -32,6 +33,14 @@ export default class Logger {
     this.datefmt = "yyyy.MM.dd HH:mm:ss z"
     // 格式設定看這裡
     // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+    this.levels = {
+      'CRITICAL':Levels['CRITICAL'],
+      'ERROR':Levels['ERROR'],
+      'WARNING':Levels['WARNING'],
+      'INFO':Levels['INFO'],
+      'DEBUG':Levels['DEBUG'],
+      'NOTSET':Levels['NOTSET'],
+    }
     this.level_label = 'WARNING'
     this.level = this.get_level_number(this.level_label)
     this.user = Session.getActiveUser().getEmail();
@@ -110,67 +119,29 @@ export default class Logger {
     const handle_level = (level_label: Levels, text: string): void => {
       switch (level_label) {
         case Levels.CRITICAL:
-          console.log('進來了');
-
+          // console.log('進來了');
           // console.log(Levels.CRITICAL, this.level)
-          if (Number(Levels.CRITICAL) >= Number(this.level)) {
-            if (this.use_console) {
-              console.error(this.ass_msg('CRITICAL', text));
-            }
-            if (this.use_sheet) {
-              let wt: string[]
-              if (this.sheet_log_slice) {
-                wt = []
-                let regexp = /%{([^\{\}]+)}/gi
-                let matches_array = this.logfmt.match(regexp);
-                for (let value of matches_array) {
-                  if (value == "%{datefmt}") {
-                    wt.push(this.get_fmtdate())
-                  } else if (value == "%{user}") {
-                    wt.push(this.user)
-                  } else if (value == "%{levelname}") {
-                    wt.push('CRITICAL')
-                  } else if (value == "%{message}") {
-                    wt.push(text)
-                  }
-                }
-              } else {
-                wt = [this.ass_msg('CRITICAL', text)]
-              }
-              this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt)
-            }
-
-          }
+          this.do_log(Levels.CRITICAL, 'CRITICAL', text)
           break;
         case Levels.ERROR:
           // console.log(Levels.ERROR, this.level)
-          if (Number(Levels.ERROR) >= Number(this.level)) {
-            console.error(this.ass_msg('ERROR', text));
-          }
+          this.do_log(Levels.ERROR, 'ERROR', text)
           break;
         case Levels.WARNING:
           // console.log(Levels.WARNING, this.level)
-          if (Number(Levels.WARNING) >= Number(this.level)) {
-            console.warn(this.ass_msg('WARNING', text));
-          }
+          this.do_log(Levels.WARNING, 'WARNING', text)
           break;
         case Levels.INFO:
           // console.log(Levels.INFO, this.level)
-          if (Number(Levels.INFO) >= Number(this.level)) {
-            console.info(this.ass_msg('INFO', text));
-          }
+          this.do_log(Levels.INFO, 'INFO', text)
           break;
         case Levels.DEBUG:
           // console.log(Levels.DEBUG, this.level)
-          if (Number(Levels.DEBUG) >= Number(this.level)) {
-            console.info(this.ass_msg('DEBUG', text));
-          }
+          this.do_log(Levels.DEBUG, 'DEBUG', text)
           break;
         case Levels.NOTSET:
           // console.log(Levels.NOTSET, this.level)
-          if (Number(Levels.NOTSET) >= Number(this.level)) {
-            console.info(this.ass_msg('NOTSET', text));
-          }
+          this.do_log(Levels.NOTSET, 'NOTSET', text)
           break;
         default:
           throw (new Error('No have status code!'));
@@ -259,5 +230,35 @@ export default class Logger {
     let len_text_array = text_array.length
     sheet.getRange(LastRow_next, 1, 1, len_text_array).setValues([text_array]);
 
+  }
+
+  private do_log(level: Levels, level_label: string, text: string) {
+    if (Number(level) >= Number(this.level)) {
+      if (this.use_console) {
+        console.error(this.ass_msg(level_label, text));
+      }
+      if (this.use_sheet) {
+        let wt: string[]
+        if (this.sheet_log_slice) {
+          wt = []
+          let regexp = /%{([^\{\}]+)}/gi
+          let matches_array = this.logfmt.match(regexp);
+          for (let value of matches_array) {
+            if (value == "%{datefmt}") {
+              wt.push(this.get_fmtdate())
+            } else if (value == "%{user}") {
+              wt.push(this.user)
+            } else if (value == "%{levelname}") {
+              wt.push(level_label)
+            } else if (value == "%{message}") {
+              wt.push(text)
+            }
+          }
+        } else {
+          wt = [this.ass_msg(level_label, text)]
+        }
+        this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt)
+      }
+    }
   }
 }
