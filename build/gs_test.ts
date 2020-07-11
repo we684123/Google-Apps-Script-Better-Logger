@@ -1,3 +1,4 @@
+import Logger from './Logger.ts'
 function t1() {
   console.log("---------------------");
 
@@ -8,17 +9,18 @@ function t1() {
   logger.set_use_sheet(true)
 
   console.log(logger.get_config())
-  logger.log(logger.levels.CRITICAL, '這是測試')
-  logger.log(logger.levels.ERROR, '這是測試')
-  logger.log(logger.levels.WARNING, '這是測試')
-  logger.log(logger.levels.DEBUG, '這是測試')
-  logger.log(logger.levels.INFO, '這是測試')
-  logger.log(logger.levels.NOTSET, '這是測試')
-  logger.critical('t1231')
-  logger.error('t1231')
-  logger.warning('t1231')
-  logger.debug('t1231')
-  logger.info('t1231')
-  logger.notest('t1231')
+  let levels = logger.levels
+  logger.log(levels.CRITICAL, '這是測試 CRITICAL')
+  logger.log(levels.ERROR, '這是測試 ERROR')
+  logger.log(levels.WARNING, '這是測試 WARNING')
+  logger.log(levels.DEBUG, '這是測試 DEBUG')
+  logger.log(levels.INFO, '這是測試 INFO')
+  logger.log(levels.NOTSET, '這是測試 NOTSET')
+  logger.critical('這是測試 CRITICAL 2')
+  logger.error('這是測試 ERROR 2')
+  logger.warning('這是測試 WARNING 2')
+  logger.debug('這是測試 DEBUG 2')
+  logger.info('這是測試 INFO 2')
+  logger.notest('這是測試 NOTSET 2')
 
 }
