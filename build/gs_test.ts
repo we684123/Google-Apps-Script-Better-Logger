@@ -5,14 +5,15 @@ import Logger from './Logger.ts'
 function t1() {
   console.log("---------------------");
   let logger = new Logger()
+  let levels = logger.levels
   logger.set_GMT('GMT+8')
   logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
   logger.set_level('WARNING')
+  logger.set_level(levels.DEBUG)
   logger.set_use_sheet(true)
 
   console.log(logger.get_config())
 
-  let levels = logger.levels
   logger.log(levels.CRITICAL, '這是測試 CRITICAL')
   logger.log(levels.ERROR, '這是測試 ERROR')
   logger.log(levels.WARNING, '這是測試 WARNING')
