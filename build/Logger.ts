@@ -124,6 +124,26 @@ export default class Logger {
     this.level = this.get_level_number(level)
   }
 
+  public set_CRITICAL_color(color: string): void {
+    this.levels['CRITICAL'] = color
+  }
+  public set_ERROR_color(color: string): void {
+    this.levels['ERROR'] = color
+  }
+  public set_WARNING_color(color: string): void {
+    this.levels['WARNING'] = color
+  }
+  public set_INFO_color(color: string): void {
+    this.levels['INFO'] = color
+  }
+  public set_DEBUG_color(color: string): void {
+    this.levels['DEBUG'] = color
+  }
+  public set_NOTSET_color(color: string): void {
+    this.levels['NOTSET'] = color
+  }
+
+
   public set_use_sheet(boolean: boolean) {
     this.use_sheet = boolean
   }
