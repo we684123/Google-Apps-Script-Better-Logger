@@ -157,57 +157,25 @@ export default class Logger {
   }
 
   public log(level_label: Levels, text: string) {
-    const handle_level = (level_label: Levels, text: string): void => {
-      switch (level_label) {
-        case Levels.CRITICAL:
-          // console.log('進來了');
-          // console.log(Levels.CRITICAL, this.level)
-          this.do_log(Levels.CRITICAL, 'CRITICAL', text)
-          break;
-        case Levels.ERROR:
-          // console.log(Levels.ERROR, this.level)
-          this.do_log(Levels.ERROR, 'ERROR', text)
-          break;
-        case Levels.WARNING:
-          // console.log(Levels.WARNING, this.level)
-          this.do_log(Levels.WARNING, 'WARNING', text)
-          break;
-        case Levels.INFO:
-          // console.log(Levels.INFO, this.level)
-          this.do_log(Levels.INFO, 'INFO', text)
-          break;
-        case Levels.DEBUG:
-          // console.log(Levels.DEBUG, this.level)
-          this.do_log(Levels.DEBUG, 'DEBUG', text)
-          break;
-        case Levels.NOTSET:
-          // console.log(Levels.NOTSET, this.level)
-          this.do_log(Levels.NOTSET, 'NOTSET', text)
-          break;
-        default:
-          throw (new Error('No have status code!'));
-      }
-    }
-    handle_level(level_label, text)
+    this.do_log(level_label, text)
   }
   public critical(text: string) {
-    this.do_log(Levels.CRITICAL, 'CRITICAL', text)
+    this.do_log(Levels.CRITICAL, text)
   }
   public error(text: string) {
-    this.do_log(Levels.ERROR, 'ERROR', text)
+    this.do_log(Levels.ERROR, text)
   }
   public warning(text: string) {
-    this.do_log(Levels.WARNING, 'WARNING', text)
+    this.do_log(Levels.WARNING, text)
   }
   public info(text: string) {
-    this.do_log(Levels.DEBUG, 'DEBUG', text)
-
+    this.do_log(Levels.DEBUG, text)
   }
   public debug(text: string) {
-    this.do_log(Levels.DEBUG, 'DEBUG', text)
+    this.do_log(Levels.DEBUG, text)
   }
   public notest(text: string) {
-    this.do_log(Levels.NOTSET, 'NOTSET', text)
+    this.do_log(Levels.NOTSET, text)
   }
 
   private ass_msg(levelname: string, message: string) {
@@ -242,6 +210,24 @@ export default class Logger {
         throw (new Error('Is not allow level_label!'));
     }
   }
+  private get_level_label(level_number: number) {
+    switch (level_number) {
+      case 50:
+        return 'CRITICAL'
+      case 40:
+        return 'ERROR'
+      case 30:
+        return 'WARNING'
+      case 20:
+        return 'INFO'
+      case 10:
+        return 'DEBUG'
+      case 0:
+        return 'NOTSET'
+      default:
+        throw (new Error('Is not allow level_label!'));
+    }
+  }
 
   private log_by_sheet(
     sheet_key: string,
@@ -249,7 +235,7 @@ export default class Logger {
     text_array: string[] = [],
     level_label: string
   ) {
-
+    // console.log(level_label);
     const SpreadSheet = SpreadsheetApp.openById(sheet_key);
     let sheet = SpreadSheet.getSheetByName(page);
     if (sheet == null) {
@@ -268,10 +254,37 @@ export default class Logger {
 
   }
 
-  private do_log(level: Levels, level_label: string, text: string) {
+  private do_log(level: Levels, text: string) {
+
+    let level_label = this.get_level_label(level)
     if (Number(level) >= Number(this.level)) {
       if (this.use_console) {
-        console.error(this.ass_msg(level_label, text));
+        const handle_level = (level: Levels, text: string): void => {
+          // console.log(Levels.CRITICAL, this.level, level_label)
+          switch (level) {
+            case Levels.CRITICAL:
+              console.error(this.ass_msg(level_label, text));
+              break;
+            case Levels.ERROR:
+              console.error(this.ass_msg(level_label, text));
+              break;
+            case Levels.WARNING:
+              console.warn(this.ass_msg(level_label, text));
+              break;
+            case Levels.INFO:
+              console.info(this.ass_msg(level_label, text));
+              break;
+            case Levels.DEBUG:
+              console.info(this.ass_msg(level_label, text));
+              break;
+            case Levels.NOTSET:
+              console.info(this.ass_msg(level_label, text));
+              break;
+            default:
+              throw (new Error('No have status code!'));
+          }
+        }
+        handle_level(level, text)
       }
       if (this.use_sheet) {
         let wt: string[]
