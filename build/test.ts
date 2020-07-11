@@ -11,6 +11,7 @@ function t1() {
   console.log("---------------------");
 
   let logger = new Logger()
+  logger.set_GMT('GMT+8')
   logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
   logger.set_level('WARNING')
   logger.set_use_sheet(true)

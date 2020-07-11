@@ -12,12 +12,13 @@ export default class Logger {
   sheet_id: string
   sheet_page_name: string
   logfmt: string
+  GMT:string
   datefmt: string
   level_label: string
   level: number
   user: string
   Levels: Levels
-  levels:object
+  levels: object
   use_sheet: boolean
   use_console: boolean
   sheet_log_slice: boolean
@@ -30,16 +31,17 @@ export default class Logger {
     this.logfmt =
       '%{datefmt} - %{user} - %{levelname} : %{message}'
     // 暫時只有這四個
+    this.GMT = 'GMT+8'
     this.datefmt = "yyyy.MM.dd HH:mm:ss z"
     // 格式設定看這裡
     // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
     this.levels = {
-      'CRITICAL':Levels['CRITICAL'],
-      'ERROR':Levels['ERROR'],
-      'WARNING':Levels['WARNING'],
-      'INFO':Levels['INFO'],
-      'DEBUG':Levels['DEBUG'],
-      'NOTSET':Levels['NOTSET'],
+      'CRITICAL': Levels['CRITICAL'],
+      'ERROR': Levels['ERROR'],
+      'WARNING': Levels['WARNING'],
+      'INFO': Levels['INFO'],
+      'DEBUG': Levels['DEBUG'],
+      'NOTSET': Levels['NOTSET'],
     }
     this.level_label = 'WARNING'
     this.level = this.get_level_number(this.level_label)
@@ -51,12 +53,16 @@ export default class Logger {
 
   public get_config(): string {
     return `
+    description = ${this.description}
     sheet_id = ${this.sheet_id}
     sheet_page_name = ${this.sheet_page_name}
     logfmt = ${this.logfmt}
+    GMT = ${this.GMT}
     datefmt = ${this.datefmt}
     level = ${this.level}
     level_label = ${this.level_label}
+    levels = ${this.levels}
+    user = ${this.user}
     use_sheet = ${this.use_sheet}
     use_console = ${this.use_console}
     sheet_log_slice = ${this.sheet_log_slice}
@@ -68,12 +74,14 @@ export default class Logger {
     sheet_page_name: string = "Log",
     logfmt: string =
       '%{datefmt} %{user} %{levelname} : %{message}',
+    GMT:string,
     datefmt: string = "yyyy.MM.dd G 'at' HH:mm:ss z",
     level: number = 30
   ): void {
     this.sheet_id = sheet_id
     this.sheet_page_name = sheet_page_name
     this.logfmt = logfmt
+    this.GMT = GMT
     this.datefmt = datefmt
     this.level = level
     this.level_label = 'WARNING'
@@ -97,6 +105,10 @@ export default class Logger {
 
   public set_datefmt(datefmt: string): void {
     this.datefmt = datefmt
+  }
+
+  public set_GMT(GMT: string): void {
+    this.GMT = GMT
   }
 
   public set_level(level: string): void {
@@ -191,7 +203,7 @@ export default class Logger {
   }
 
   private get_fmtdate() {
-    return Utilities.formatDate(new Date(), "GMT", this.datefmt)
+    return Utilities.formatDate(new Date(), this.GMT, this.datefmt)
   }
 
   private get_level_number(level_label: string) {
