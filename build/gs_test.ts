@@ -1,12 +1,3 @@
-import Logger from "./Logger.ts";
-// const enum Levels {
-//   CRITICAL = 50,
-//   ERROR = 40,
-//   WARNING = 30,
-//   INFO = 20,
-//   DEBUG = 10,
-//   NOTSET = 0
-// }
 function t1() {
   console.log("---------------------");
 
