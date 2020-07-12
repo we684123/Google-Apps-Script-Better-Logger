@@ -87,19 +87,23 @@ export default class Logger {
   public get_config(): string {
     return `
     description = ${this.description}
-    sheet_id = ${this.sheet_id}
-    sheet_page_name = ${this.sheet_page_name}
-    logfmt = ${this.logfmt}
+    user = ${this.user}
     GMT = ${this.GMT}
+    logfmt = ${this.logfmt}
     datefmt = ${this.datefmt}
     level = ${this.level}
     level_label = ${this.level_label}
     levels = ${JSON.stringify(this.levels)}
-    levels_colors = ${JSON.stringify(this.levels_colors)}
-    user = ${this.user}
-    use_sheet = ${this.use_sheet}
     use_console = ${this.use_console}
+    use_sheet = ${this.use_sheet}
+    sheet_id = ${this.sheet_id}
+    sheet_page_name = ${this.sheet_page_name}
     sheet_log_slice = ${this.sheet_log_slice}
+    levels_colors = ${JSON.stringify(this.levels_colors)}
+    use_mail = ${this.use_mail}
+    levels_use_mail = ${JSON.stringify(this.levels_use_mail)}
+    mail_subject_fmt = ${this.mail_subject_fmt}
+    application = ${this.application}
     `
   }
 
