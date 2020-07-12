@@ -76,8 +76,8 @@ export default class Logger {
     datefmt = ${this.datefmt}
     level = ${this.level}
     level_label = ${this.level_label}
-    levels = ${this.levels}
-    levels_colors = ${this.levels_colors}
+    levels = ${JSON.stringify(this.levels)}
+    levels_colors = ${JSON.stringify(this.levels_colors)}
     user = ${this.user}
     use_sheet = ${this.use_sheet}
     use_console = ${this.use_console}
