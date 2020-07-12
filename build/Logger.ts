@@ -107,14 +107,6 @@ export default class Logger {
     this.sheet_log_slice = true
   }
 
-  public set_sheet_id(sheet_id: string): void {
-    this.sheet_id = sheet_id
-  }
-
-  public set_sheet_page_name(sheet_page_name: string): void {
-    this.sheet_page_name = sheet_page_name
-  }
-
   public set_logfmt(logfmt: string): void {
     this.logfmt = logfmt
   }
@@ -127,8 +119,31 @@ export default class Logger {
     this.GMT = GMT
   }
 
+  public set_use_console(boolean: boolean) {
+    this.use_console = boolean
+  }
+
+  public set_use_sheet(boolean: boolean) {
+    this.use_sheet = boolean
+  }
+  public set_sheet_id(sheet_id: string): void {
+    this.sheet_id = sheet_id
+  }
+  public set_sheet_page_name(sheet_page_name: string): void {
+    this.sheet_page_name = sheet_page_name
+  }
+  public set_sheet_log_slice(boolean: boolean) {
+    this.sheet_log_slice = boolean
+  }
+
+
+
   public set_level(level: string): void {
-    this.level = this.get_level_correspond(level)
+    let rt = this.get_level_correspond(level, 0)
+    if (rt == undefined) {
+      throw (new Error('level is not allow!'))
+    }
+    this.level = rt
   }
 
   public set_EMERGENCY_color(color: string): void {
@@ -156,24 +171,11 @@ export default class Logger {
     this.levels['NOTICE'] = color
   }
 
-
-  public set_use_sheet(boolean: boolean) {
-    this.use_sheet = boolean
-  }
-
-  public set_use_console(boolean: boolean) {
-    this.use_console = boolean
-  }
-
-  public set_sheet_log_slice(boolean: boolean) {
-    this.sheet_log_slice = boolean
-  }
-
   public log(level_label: Levels, text: string) {
     this.do_log(level_label, text)
   }
   public emergency(text: string) {
-    this.do_log(Levels.CRITICAL, text)
+    this.do_log(Levels.EMERGENCY, text)
   }
   public alert(text: string) {
     this.do_log(Levels.ALERT, text)
@@ -188,7 +190,7 @@ export default class Logger {
     this.do_log(Levels.WARNING, text)
   }
   public info(text: string) {
-    this.do_log(Levels.DEBUG, text)
+    this.do_log(Levels.INFO, text)
   }
   public debug(text: string) {
     this.do_log(Levels.DEBUG, text)
@@ -211,19 +213,20 @@ export default class Logger {
     return Utilities.formatDate(new Date(), this.GMT, this.datefmt)
   }
 
-  private get_level_correspond(level: any) {
-    let level_muster = this.levels
-    // console.log(level_muster)
-    // console.log(level)
-    const values_list = Object.values(level_muster)
-    const keys_list = Object.keys(level_muster)
+  public get_level_correspond(level: any, type?: string | number) {
+    if (typeof (level) == typeof (type)) {
+      return level
+    }
+    const values_list = Object.values(this.levels)
+    const keys_list = Object.keys(this.levels)
     const correspond_ed = this.correspond(keys_list, values_list)
 
     return correspond_ed[String(level)]
   }
+
   private correspond(keys_list: any[], values_list: any[]) {
     if (keys_list.length != values_list.length) {
-      throw (new Error('keys_list and values_list length not equal.'));
+      throw (new Error('keys_list and values_list length not equal.'))
     }
     let correspond_aims = {}
     for (let index = 0; index < keys_list.length; index++) {
@@ -231,31 +234,6 @@ export default class Logger {
       correspond_aims[values_list[index]] = keys_list[index]
     }
     return correspond_aims
-  }
-
-  private log_by_sheet(
-    sheet_key: string,
-    page: string = 'log',
-    text_array: string[] = [],
-    level_label: string
-  ) {
-    // console.log(level_label);
-    const SpreadSheet = SpreadsheetApp.openById(sheet_key);
-    let sheet = SpreadSheet.getSheetByName(page);
-    if (sheet == null) {
-      sheet = SpreadSheet.insertSheet(page)
-      console.log(`creat a page (name = "${page}")`);
-    }
-    let SheetLastRow = sheet.getLastRow();
-    let LastRow_next = Number(SheetLastRow) + 1
-    let len_text_array = text_array.length
-    let color = this.levels_colors[level_label]
-
-    sheet
-      .getRange(LastRow_next, 1, 1, len_text_array)
-      .setValues([text_array])
-      .setBackground(color)
-
   }
 
   private do_log(level: Levels, text: string) {
@@ -291,7 +269,7 @@ export default class Logger {
               console.info(this.ass_msg(level_label, text));
               break;
             default:
-              throw (new Error('No have status code!'));
+              throw (new Error('No have this level!'));
           }
         }
         handle_level(level, text)
@@ -319,5 +297,32 @@ export default class Logger {
         this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt, level_label)
       }
     }
+  }
+
+  private log_by_sheet(
+    sheet_key: string,
+    page: string = 'log',
+    text_array: string[] = [],
+    level_label: string
+  ) {
+    // console.log(level_label);
+    const SpreadSheet = SpreadsheetApp.openById(sheet_key);
+    let sheet = SpreadSheet.getSheetByName(page);
+    if (sheet == null) {
+      sheet = SpreadSheet.insertSheet(page)
+      console.log(`creat a page (name = "${page}")`);
+    }
+    let SheetLastRow = sheet.getLastRow();
+    let LastRow_next = Number(SheetLastRow) + 1
+    let len_text_array = text_array.length
+    // console.log(this.levels_colors);
+    // console.log(`level_label = ${level_label}`);
+
+    let color = this.levels_colors[level_label]
+
+    sheet
+      .getRange(LastRow_next, 1, 1, len_text_array)
+      .setValues([text_array])
+      .setBackground(color)
   }
 }

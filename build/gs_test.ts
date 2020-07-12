@@ -8,9 +8,11 @@ function t1() {
   let levels = logger.levels
   logger.set_GMT('GMT+8')
   logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
-  logger.set_level('WARNING')
-  logger.set_level(levels.DEBUG)
   logger.set_use_sheet(true)
+
+  // logger.set_level('WARNING')
+  logger.set_level(levels.NOTICE)
+
 
   console.log(logger.get_config())
 
@@ -21,7 +23,7 @@ function t1() {
   logger.log(levels.WARNING, '這是測試 WARNING !!!!!')
   logger.log(levels.DEBUG, '這是測試 DEBUG !!!!!')
   logger.log(levels.INFO, '這是測試 INFO !!!!!')
-  logger.log(levels.NOTICE, '這是測試 NOTSET !!!!!')
+  logger.log(levels.NOTICE, '這是測試 NOTICE !!!!!')
   logger.emergency('這是測試 EMERGENCY =====')
   logger.alert('這是測試 ALERT =====')
   logger.critical('這是測試 CRITICAL =====')
@@ -29,13 +31,14 @@ function t1() {
   logger.warning('這是測試 WARNING =====')
   logger.debug('這是測試 DEBUG =====')
   logger.info('這是測試 INFO =====')
-  logger.notice('這是測試 NOTSET =====')
+  logger.notice('這是測試 NOTICE =====')
 }
 
 function t2() {
   console.log("---------------------");
   let logger = new Logger()
   console.log(logger.get_config())
+  logger.set_level(logger.levels.NOTICE);
 
   let levels = logger.levels
   logger.log(levels.EMERGENCY, '這是測試 EMERGENCY !!!!!')
@@ -45,7 +48,7 @@ function t2() {
   logger.log(levels.WARNING, '這是測試 WARNING !!!!!')
   logger.log(levels.DEBUG, '這是測試 DEBUG !!!!!')
   logger.log(levels.INFO, '這是測試 INFO !!!!!')
-  logger.log(levels.NOTICE, '這是測試 NOTSET !!!!!')
+  logger.log(levels.NOTICE, '這是測試 NOTICE !!!!!')
   logger.emergency('這是測試 EMERGENCY =====')
   logger.alert('這是測試 ALERT =====')
   logger.critical('這是測試 CRITICAL =====')
@@ -53,5 +56,5 @@ function t2() {
   logger.warning('這是測試 WARNING =====')
   logger.debug('這是測試 DEBUG =====')
   logger.info('這是測試 INFO =====')
-  logger.notice('這是測試 NOTSET =====')
+  logger.notice('這是測試 NOTICE =====')
 }
