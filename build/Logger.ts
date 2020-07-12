@@ -22,6 +22,10 @@ export default class Logger {
   Levels: Levels
   levels: object
   levels_colors: object
+  use_mail: boolean
+  levels_use_mail: object
+  mail_subject_fmt: string
+  application: string
   use_sheet: boolean
   use_console: boolean
   sheet_log_slice: boolean
@@ -58,6 +62,20 @@ export default class Logger {
       'DEBUG': "#76a5af",
       'NOTICE': "#9fc5e8",
     }
+    this.use_mail = false
+    this.levels_use_mail = {
+      'EMERGENCY': true,
+      'ALERT': true,
+      'CRITICAL': false,
+      'ERROR': false,
+      'WARNING': false,
+      'INFO': false,
+      'DEBUG': false,
+      'NOTICE': true,
+    }
+    this.mail_subject_fmt = "%{application} %{log_level}"
+    // 暫時就這2個
+    this.application = "Google_Apps_Script_Logger"
     this.level_label = 'WARNING'
     this.level = this.get_level_correspond(this.level_label)
     this.user = Session.getActiveUser().getEmail();
@@ -171,6 +189,31 @@ export default class Logger {
     this.levels['NOTICE'] = color
   }
 
+  public set_EMERGENCY_mail(yn: boolean): void {
+    this.levels['EMERGENCY'] = yn
+  }
+  public set_ALERT_mail(yn: boolean): void {
+    this.levels['ALERT'] = yn
+  }
+  public set_CRITICAL_mail(yn: boolean): void {
+    this.levels['CRITICAL'] = yn
+  }
+  public set_ERROR_mail(yn: boolean): void {
+    this.levels['ERROR'] = yn
+  }
+  public set_WARNING_mail(yn: boolean): void {
+    this.levels['WARNING'] = yn
+  }
+  public set_INFO_mail(yn: boolean): void {
+    this.levels['INFO'] = yn
+  }
+  public set_DEBUG_mail(yn: boolean): void {
+    this.levels['DEBUG'] = yn
+  }
+  public set_NOTICE_mail(yn: boolean): void {
+    this.levels['NOTICE'] = yn
+  }
+
   public log(level_label: Levels, text: string) {
     this.do_log(level_label, text)
   }
@@ -199,6 +242,10 @@ export default class Logger {
     this.do_log(Levels.NOTICE, text)
   }
 
+  public set_application(application: string) {
+    this.application = application
+  }
+
   private ass_msg(levelname: string, message: string) {
     let formattedDate = this.get_fmtdate()
 
@@ -207,6 +254,13 @@ export default class Logger {
       .replace(/%{user}/g, this.user)
       .replace(/%{levelname}/g, levelname)
       .replace(/%{message}/g, message)
+  }
+
+  private ass_subject(level_label:string) {
+    return this.mail_subject_fmt
+      .replace(/%{application}/g, this.application)
+      .replace(/%{log_level}/g, level_label)
+
   }
 
   private get_fmtdate() {
@@ -295,6 +349,25 @@ export default class Logger {
           wt = [this.ass_msg(level_label, text)]
         }
         this.log_by_sheet(this.sheet_id, this.sheet_page_name, wt, level_label)
+      }
+      if (this.use_mail) {
+        if (this.levels_use_mail[level_label]) {
+          try {
+            GmailApp.sendEmail(
+              this.user,
+              this.ass_subject(level_label),
+              this.ass_msg(level_label, text),
+            );
+            console.log(
+              `send a Email ,
+               ${this.user},
+               ${this.ass_subject(level_label)},
+               ${this.ass_msg(level_label, text)}`
+            );
+          } catch (error) {
+            console.error(error);
+          }
+        }
       }
     }
   }

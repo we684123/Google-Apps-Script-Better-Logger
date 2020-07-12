@@ -58,3 +58,21 @@ function t2() {
   logger.info('這是測試 INFO =====')
   logger.notice('這是測試 NOTICE =====')
 }
+
+function t3() {
+  console.log("---------------------");
+  var logger = new Logger();
+  console.log(logger.get_config());
+  logger.set_level(logger.levels.NOTICE);
+  logger.use_mail = true;
+  logger.application = '這裡填你的應用程式名稱'
+
+  logger.emergency('這是測試 EMERGENCY =====');
+  logger.alert('這是測試 ALERT =====');
+  logger.critical('這是測試 CRITICAL =====');
+  logger.error('這是測試 ERROR =====');
+  logger.warning('這是測試 WARNING =====');
+  logger.debug('這是測試 DEBUG =====');
+  logger.info('這是測試 INFO =====');
+  logger.notice('這是測試 NOTICE =====');
+}
