@@ -34,8 +34,11 @@ function correspond(keys_list:any[], values_list:any[]) {
   let correspond_aims = {}
   for (let index = 0; index < keys_list.length; index++) {
     correspond_aims[keys_list[index]] = values_list[index]
-    correspond_aims[values_list[index]] = values_list[index]
+    correspond_aims[values_list[index]] = keys_list[index]
   }
   return correspond_aims
 }
-console.log(correspond(keys_list, values_list));
+function t2(){
+  console.log(correspond(keys_list, values_list));
+
+}

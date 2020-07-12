@@ -1,10 +1,12 @@
 const enum Levels {
-  CRITICAL = 50,
-  ERROR = 40,
-  WARNING = 30,
-  INFO = 20,
-  DEBUG = 10,
-  NOTSET = 0
+  EMERGENCY = 70, //緊急
+  ALERT = 60,     //快訊
+  CRITICAL = 50,  //重要
+  ERROR = 40,     //錯誤
+  WARNING = 30,   //警告
+  INFO = 20,      //資訊
+  DEBUG = 10,     //除錯
+  NOTICE = 0      //通知
 }
 
 export default class Logger {
@@ -37,23 +39,27 @@ export default class Logger {
     // 格式設定看這裡
     // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
     this.levels = {
+      'EMERGENCY': Levels['EMERGENCY'],
+      'ALERT': Levels['ALERT'],
       'CRITICAL': Levels['CRITICAL'],
       'ERROR': Levels['ERROR'],
       'WARNING': Levels['WARNING'],
       'INFO': Levels['INFO'],
       'DEBUG': Levels['DEBUG'],
-      'NOTSET': Levels['NOTSET']
+      'NOTICE': Levels['NOTICE']
     }
     this.levels_colors = {
+      'EMERGENCY': "#ff0000",
+      'ALERT': "#980000",
       'CRITICAL': "#e06666",
       'ERROR': "#f6b26b",
       'WARNING': "#ffe599",
       'INFO': "#93c47d",
       'DEBUG': "#76a5af",
-      'NOTSET': "#9fc5e8",
+      'NOTICE': "#9fc5e8",
     }
     this.level_label = 'WARNING'
-    this.level = this.get_level_number(this.level_label)
+    this.level = this.get_level_correspond(this.level_label)
     this.user = Session.getActiveUser().getEmail();
     this.use_sheet = false
     this.use_console = true
@@ -71,6 +77,7 @@ export default class Logger {
     level = ${this.level}
     level_label = ${this.level_label}
     levels = ${this.levels}
+    levels_colors = ${this.levels_colors}
     user = ${this.user}
     use_sheet = ${this.use_sheet}
     use_console = ${this.use_console}
@@ -94,7 +101,7 @@ export default class Logger {
     this.datefmt = datefmt
     this.level = level
     this.level_label = 'WARNING'
-    this.level = this.get_level_number(this.level_label)
+    this.level = this.get_level_correspond(this.level_label)
     this.use_sheet = false
     this.use_console = true
     this.sheet_log_slice = true
@@ -121,9 +128,15 @@ export default class Logger {
   }
 
   public set_level(level: string): void {
-    this.level = this.get_level_number(level)
+    this.level = this.get_level_correspond(level)
   }
 
+  public set_EMERGENCY_color(color: string): void {
+    this.levels['EMERGENCY'] = color
+  }
+  public set_ALERT_color(color: string): void {
+    this.levels['ALERT'] = color
+  }
   public set_CRITICAL_color(color: string): void {
     this.levels['CRITICAL'] = color
   }
@@ -139,8 +152,8 @@ export default class Logger {
   public set_DEBUG_color(color: string): void {
     this.levels['DEBUG'] = color
   }
-  public set_NOTSET_color(color: string): void {
-    this.levels['NOTSET'] = color
+  public set_NOTICE_color(color: string): void {
+    this.levels['NOTICE'] = color
   }
 
 
@@ -159,6 +172,12 @@ export default class Logger {
   public log(level_label: Levels, text: string) {
     this.do_log(level_label, text)
   }
+  public emergency(text: string) {
+    this.do_log(Levels.CRITICAL, text)
+  }
+  public alert(text: string) {
+    this.do_log(Levels.ALERT, text)
+  }
   public critical(text: string) {
     this.do_log(Levels.CRITICAL, text)
   }
@@ -174,8 +193,8 @@ export default class Logger {
   public debug(text: string) {
     this.do_log(Levels.DEBUG, text)
   }
-  public notest(text: string) {
-    this.do_log(Levels.NOTSET, text)
+  public notice(text: string) {
+    this.do_log(Levels.NOTICE, text)
   }
 
   private ass_msg(levelname: string, message: string) {
@@ -192,41 +211,26 @@ export default class Logger {
     return Utilities.formatDate(new Date(), this.GMT, this.datefmt)
   }
 
-  private get_level_number(level_label: string) {
-    switch (level_label) {
-      case 'CRITICAL':
-        return 50
-      case 'ERROR':
-        return 40
-      case 'WARNING':
-        return 30
-      case 'INFO':
-        return 20
-      case 'DEBUG':
-        return 10
-      case 'NOTSET':
-        return 0
-      default:
-        throw (new Error('Is not allow level_label!'));
-    }
+  private get_level_correspond(level: any) {
+    let level_muster = this.levels
+    // console.log(level_muster)
+    // console.log(level)
+    const values_list = Object.values(level_muster)
+    const keys_list = Object.keys(level_muster)
+    const correspond_ed = this.correspond(keys_list, values_list)
+
+    return correspond_ed[String(level)]
   }
-  private get_level_label(level_number: number) {
-    switch (level_number) {
-      case 50:
-        return 'CRITICAL'
-      case 40:
-        return 'ERROR'
-      case 30:
-        return 'WARNING'
-      case 20:
-        return 'INFO'
-      case 10:
-        return 'DEBUG'
-      case 0:
-        return 'NOTSET'
-      default:
-        throw (new Error('Is not allow level_label!'));
+  private correspond(keys_list: any[], values_list: any[]) {
+    if (keys_list.length != values_list.length) {
+      throw (new Error('keys_list and values_list length not equal.'));
     }
+    let correspond_aims = {}
+    for (let index = 0; index < keys_list.length; index++) {
+      correspond_aims[keys_list[index]] = values_list[index]
+      correspond_aims[values_list[index]] = keys_list[index]
+    }
+    return correspond_aims
   }
 
   private log_by_sheet(
@@ -256,12 +260,18 @@ export default class Logger {
 
   private do_log(level: Levels, text: string) {
 
-    let level_label = this.get_level_label(level)
+    let level_label = this.get_level_correspond(level)
     if (Number(level) >= Number(this.level)) {
       if (this.use_console) {
         const handle_level = (level: Levels, text: string): void => {
           // console.log(Levels.CRITICAL, this.level, level_label)
           switch (level) {
+            case Levels.EMERGENCY:
+              console.error(this.ass_msg(level_label, text));
+              break;
+            case Levels.ALERT:
+              console.error(this.ass_msg(level_label, text));
+              break;
             case Levels.CRITICAL:
               console.error(this.ass_msg(level_label, text));
               break;
@@ -277,7 +287,7 @@ export default class Logger {
             case Levels.DEBUG:
               console.info(this.ass_msg(level_label, text));
               break;
-            case Levels.NOTSET:
+            case Levels.NOTICE:
               console.info(this.ass_msg(level_label, text));
               break;
             default:
