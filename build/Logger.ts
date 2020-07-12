@@ -275,7 +275,9 @@ export default class Logger {
     if (typeof (level) == typeof (type)) {
       return level
     }
-    const values_list = Object.values(this.levels)
+    // ES7 暫時封印
+    //const values_list = Object.values(this.levels)
+    const values_list = Object.keys(this.levels).map(key=>this.levels[key]);
     const keys_list = Object.keys(this.levels)
     const correspond_ed = this.correspond(keys_list, values_list)
 
