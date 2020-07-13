@@ -123,7 +123,11 @@ export default class Logger {
     this.datefmt = datefmt
     this.level = level
     this.level_label = 'WARNING'
-    this.level = this.get_level_correspond(this.level_label)
+    let rt = this.get_level_correspond(level, 0)
+    if (rt == undefined) {
+      throw (new Error('level is not allow!'))
+    }
+    this.level = rt
     this.use_sheet = false
     this.use_console = true
     this.sheet_log_slice = true
