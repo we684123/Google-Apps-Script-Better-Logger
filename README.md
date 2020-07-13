@@ -120,7 +120,7 @@ result：
 <!-- <br> -->
 # 概觀 Overview
 
-| 功能 Features | 說明 Explanation|     
+| 功能 Methods | 說明 Explanation|     
 |-------|:-----:|   
 |set_config|一次設定Logger所有參數。<br>Set Logger all config|
 |set_logfmt|設定Logger的時間格式<br>Set Logger time format|
@@ -159,11 +159,15 @@ result：
 |debug|使用 debug log<br> use debug log|
 |notice|使用 notice log<br> use notice log|
 
+----
+# 功能詳細說明 Methods Detailed description
+
+### set_config
+cccc
 
 
 
 
 
 
-
-#1231
+#
