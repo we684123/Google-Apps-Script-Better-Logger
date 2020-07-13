@@ -132,7 +132,7 @@ result：
 |[set_sheet_log_slice](#set_sheet_log_slice)|設定log進sheet時，要不要分欄輸入(A欄、B欄...)<br>When log into the sheet, do you want to enter it in a columns or separate(Column A, Column B...)|
 |[set_level](#set_level)|設定紀錄的等級<br>Set the record level|
 |[set_EMERGENCY_color](#set_XXX_color)|設定 EMERGENCY 紀錄在 sheet 時的單元格顏色<br>Set the cell color when EMERGENCY is recorded in sheet|
-|[set_ALERT_color]|設定 ALERT 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ALERT is recorded in sheet|
+|[set_ALERT_color](#set_XXX_color)|設定 ALERT 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ALERT is recorded in sheet|
 |[set_CRITICAL_color](#set_XXX_color)|設定 CRITICAL 紀錄在 sheet 時的單元格顏色<br>Set the cell color when CRITICAL is recorded in sheet|
 |[set_ERROR_color](#set_XXX_color)|設定 ERROR 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ERROR is recorded in sheet|
 |[set_WARNING_color](#set_XXX_color)|設定 WARNING 紀錄在 sheet 時的單元格顏色<br>Set the cell color when WARNING is recorded in sheet|
