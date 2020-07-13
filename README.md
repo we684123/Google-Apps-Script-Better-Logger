@@ -1,9 +1,9 @@
 # Google_Apps_Script_Logger
-一個比原生 console.log 好一些的 Logger
-可以用 sheet、Stackdriver Logging 紀錄，還可以用 mail 通知
+一個比原生 console.log 好一些的 Logger    
+可以用 sheet、Stackdriver Logging 紀錄，還可以用 mail 通知    
 
-A better console.log Logger
-You can use sheet, Stackdriver Logging records, you can also use mail to notify
+A better console.log Logger.    
+You can use sheet, Stackdriver Logging records, you can also use mail to notify.    
 
 ----
 
@@ -93,7 +93,7 @@ function t3() {
 
   // 啟動 mail 通知 (在沒有特別設定的情況下，只有 EMERGENCY、ALERT、NOTICE 3個會通知)
   // Turn on mail notice, if you not change setting, only EMERGENCY、ALERT、NOTICE will notice
-  logger.use_mail = true;
+  logger.set_use_mail = true;
 
   // 這裡填寫你的程式名稱 寄信時當作標題用
   // there fill in the name of your program , will use it as the title when sending a mail.
