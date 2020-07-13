@@ -249,7 +249,7 @@ function t4() {
 
 
 ## set_use_console
-用來開關Stackdriver Logging，預設開啟。
+用來開關 Stackdriver Logging，預設 true。
 ```
 set_use_console(boolean)
 ```
@@ -267,11 +267,237 @@ void
 ```
 function t4() {
   var logger = new Logger();
-  logger.set_GMT("GTM+8")
+  logger.set_use_console(false)
   console.log(logger.get_config());
 }
 ```
 
+## set_use_sheet
+用來開關 sheet log，預設 false。
+```
+set_use_sheet(boolean)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|boolean|boolean|true or false|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_use_sheet(true)
+  console.log(logger.get_config());
+}
+```
+
+
+## set_sheet_id
+用來設定 sheet id。
+```
+set_sheet_id(id)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|id|string|https://docs.google.com/spreadsheets/d/```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4```/edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_use_sheet("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
+  console.log(logger.get_config());
+}
+```
+
+
+## set_sheet_page_name
+用來設定 sheet page name。
+```
+set_sheet_page_name(page_name)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|page_name|string|使用sheet中的哪個page，預設是'log'|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_sheet_page_name("log_2020/07/13")
+  console.log(logger.get_config());
+}
+```
+
+
+## set_sheet_log_slice
+設定 sheet log 是否要。
+```
+set_sheet_log_slice(boolean)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|boolean|boolean|設定log進sheet時，要不要分欄輸入(A欄、B欄...)|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_sheet_log_slice(true)
+  console.log(logger.get_config());
+}
+```
+
+
+## set_level
+設定 log level。
+```
+set_level(level)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|level|string \| number \| [Levels](#Levels)|紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_level('WARNING')
+  console.log(logger.get_config());
+}
+```
+
+
+## set_XXX_color
+設定 XXX 在 sheet log 時的顏色。
+```
+set_XXX_color(color)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|color|string|[十六進位字串顏色](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E9%A2%9C%E8%89%B2)|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_ALERT_color(#ffff00)
+  logger.set_level(50)
+  logger.alert("顏色 == #ffff00")
+}
+```
+
+
+## set_use_mail
+設定是否在 log 時寄送 eamil。
+```
+set_use_mail(boolean)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|boolean|boolean|true of false|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_use_mail(true)
+  logger.alert("寄送 Email!")
+}
+```
+
+
+## set_XXX_mail
+設定指定 log level 是否寄送 Email。
+如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。
+```
+set_XXX_mail(boolean)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|boolean|boolean|true of false|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_ERROR_mail(true)
+  logger.error("寄送 email!")
+}
+```
+
+
+## set_application
+設定指定 log level 是否寄送 Email。
+如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。
+```
+set_application(subject)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|subject|string|寄信時的標題名稱|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_application("minecraft")
+  logger.notice("伺服器重啟成功！")
+}
+```
 
 
 ----
@@ -281,11 +507,30 @@ function t4() {
 ## logfmt
 logfmt 預設是 "%{datefmt} - %{user} - %{levelname} : %{message}"
 
-datefmt 是時間格式化後的字串，詳見[datefmt](#datefmt)
-user 為使用這個Logger的google帳號 (xxx@gmail.com)
-levelname 是log的等級，詳見[levels](#levels)
-message 是你想記錄的訊息文字
+### 種類
+|名稱|說明|
+|:--:|:--:|
+|datefmt  |是時間格式化後的字串，詳見[datefmt](#datefmt)|
+|user     |為使用這個Logger的google帳號 (xxx@gmail.com)|
+|levelname|是log的等級，詳見[levels](#levels)|
+|message  |是你想記錄的訊息文字|
+
+
 
 ## datefmt
 datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 詳細請看 [SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)
+
+
+## Levels
+
+|名稱|等級|說明|
+|:--:|:--:|:--:|
+|EMERGENCY|70|緊急|
+|ALERT    |60|快訊|
+|CRITICAL |50|重要|
+|ERROR    |40|錯誤|
+|WARNING  |30|警告|
+|INFO     |20|資訊|
+|DEBUG    |10|除錯|
+|NOTICE   | 0|通知|
