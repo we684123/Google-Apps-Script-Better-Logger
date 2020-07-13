@@ -160,14 +160,32 @@ result：
 |notice|使用 notice log<br> use notice log|
 
 ----
+
 # 功能詳細說明 Methods Detailed description
 
-### set_config
-cccc
+## set_config
+
+```set_config(sheet_id, sheet_page_name, logfmt, GMT, datefmt, level)```
 
 
+### Return
+void
 
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|sheet_id|string|https://docs.google.com/spreadsheets/d/```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4```/edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
+|sheet_page_name|string|使用sheet中的哪個page，預設是'log'|
+|logfmt|string|logger的log格式|
+|GMT|string|GMT時間|
+|datefmt|string|logger的log格式中 時間的紀錄方式|
+|level|string \| number \| Levels|紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式|
 
+### Explanation
+
+```
+
+```
 
 
 #
