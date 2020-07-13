@@ -164,11 +164,10 @@ result：
 # 功能詳細說明 Methods Detailed description
 
 ## set_config
-
+設定 Logger。
 ```
 set_config(sheet_id, sheet_page_name, logfmt, GMT, datefmt, level)
 ```
-
 
 ### Return
 void
@@ -180,14 +179,12 @@ void
 |sheet_page_name|string|使用sheet中的哪個page，預設是'log'|
 |[logfmt](#logfmt)|string|logger的log格式|
 |[GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)|string|GMT時間|
-|datefmt|string|logger的log格式中 時間的紀錄方式|
+|[datefmt](#datefmt)|string|logger的log格式中 時間的紀錄方式|
 |level|string \| number \| Levels|紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式|
 
 ### Explanation
-
 ```
 function t4() {
-  console.log("---------------------");
   var logger = new Logger();
   logger.set_config(
     "xxx123",
@@ -203,10 +200,10 @@ function t4() {
 
 
 ## set_logfmt
+設定log格式。
 ```
 set_logfmt(logfmt)
 ```
-
 
 ### Return
 void
@@ -216,18 +213,79 @@ void
 |:---:|:---:|:---:|
 |[logfmt](#logfmt)|string|logger的log格式|
 
-
 ### Explanation
-
 ```
 function t4() {
-  console.log("---------------------");
   var logger = new Logger();
   logger.set_logfmt("%{datefmt} %{levelname} : %{message}")
   console.log(logger.get_config());
 }
 ```
 
+
+## set_GMT
+設定 Logger GMT 時區。
+```
+set_GMT(GMT)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|GMT|string|GMT時區|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_GMT("GTM+8")
+  console.log(logger.get_config());
+}
+```
+
+
+## set_use_console
+用來開關Stackdriver Logging，預設開啟。
+```
+set_use_console(boolean)
+```
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|boolean|boolean|true or false|
+
+
+### Explanation
+```
+function t4() {
+  var logger = new Logger();
+  logger.set_GMT("GTM+8")
+  console.log(logger.get_config());
+}
+```
+
+
+
+----
+
 # 元件說明 Component Description
 
 ## logfmt
+logfmt 預設是 "%{datefmt} - %{user} - %{levelname} : %{message}"
+
+datefmt 是時間格式化後的字串，詳見[datefmt](#datefmt)
+user 為使用這個Logger的google帳號 (xxx@gmail.com)
+levelname 是log的等級，詳見[levels](#levels)
+message 是你想記錄的訊息文字
+
+## datefmt
+datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
+詳細請看 [SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)
