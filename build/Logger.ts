@@ -193,6 +193,9 @@ export default class Logger {
     this.levels['NOTICE'] = color
   }
 
+  public set_use_mail(yn: boolean): void {
+    this.use_mail = yn
+  }
   public set_EMERGENCY_mail(yn: boolean): void {
     this.levels['EMERGENCY'] = yn
   }
@@ -260,7 +263,7 @@ export default class Logger {
       .replace(/%{message}/g, message)
   }
 
-  private ass_subject(level_label:string) {
+  private ass_subject(level_label: string) {
     return this.mail_subject_fmt
       .replace(/%{application}/g, this.application)
       .replace(/%{log_level}/g, level_label)
@@ -271,13 +274,13 @@ export default class Logger {
     return Utilities.formatDate(new Date(), this.GMT, this.datefmt)
   }
 
-  public get_level_correspond(level: any, type?: string | number) {
+  private get_level_correspond(level: any, type?: string | number) {
     if (typeof (level) == typeof (type)) {
       return level
     }
     // ES7 暫時封印
     //const values_list = Object.values(this.levels)
-    const values_list = Object.keys(this.levels).map(key=>this.levels[key]);
+    const values_list = Object.keys(this.levels).map(key => this.levels[key]);
     const keys_list = Object.keys(this.levels)
     const correspond_ed = this.correspond(keys_list, values_list)
 
