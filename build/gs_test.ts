@@ -76,3 +76,17 @@ function t3() {
   logger.info('這是測試 INFO =====');
   logger.notice('這是測試 NOTICE =====');
 }
+
+function t4() {
+  console.log("---------------------");
+  var logger = new Logger();
+  logger.set_config(
+    "xxx123",
+    "log_2020/07/13",
+    "%{datefmt} %{levelname} : %{message}",
+    "GMT+0",
+    "yyyy.MM.dd HH:mm:ss",
+    'INFO'
+  )
+  console.log(logger.get_config());
+}
