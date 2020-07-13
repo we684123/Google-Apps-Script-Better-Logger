@@ -122,33 +122,33 @@ result：
 
 | 功能 Methods | 說明 Explanation|     
 |-------|:-----:|   
-|set_config|一次設定Logger所有參數。<br>Set Logger all config|
-|set_logfmt|設定Logger的時間格式<br>Set Logger time format|
-|set_GMT|設定Logger時區，單位GMT<br>Set Logger time zone, unit GMT |
-|set_use_console|設定是否啟用 Stackdriver Logging，預設開啟<br>Set whether to enable Stackdriver Logging, the default is on|
-|set_use_sheet|設定是否啟用 sheet，預設關閉<br>Set whether to enable sheet, the default is off|
-|set_sheet_id|設定要使用的sheet id<br>Set the sheet id|
-|set_sheet_page_name|設定要使用的sheet page，預設為 'log'<br>Set the sheet page to use, the default is 'log'|
-|set_sheet_log_slice|設定log進sheet時，要不要分欄輸入(A欄、B欄...)<br>When log into the sheet, do you want to enter it in a columns or separate(Column A, Column B...)|
-|set_level|設定紀錄的等級<br>Set the record level|
-|set_EMERGENCY_color|設定 EMERGENCY 紀錄在 sheet 時的單元格顏色<br>Set the cell color when EMERGENCY is recorded in sheet|
-|set_ALERT_color|設定 ALERT 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ALERT is recorded in sheet|
-|set_CRITICAL_color|設定 CRITICAL 紀錄在 sheet 時的單元格顏色<br>Set the cell color when CRITICAL is recorded in sheet|
-|set_ERROR_color|設定 ERROR 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ERROR is recorded in sheet|
-|set_WARNING_color|設定 WARNING 紀錄在 sheet 時的單元格顏色<br>Set the cell color when WARNING is recorded in sheet|
-|set_INFO_color|設定 INFO 紀錄在 sheet 時的單元格顏色<br>Set the cell color when INFO is recorded in sheet|
-|set_DEBUG_color|設定 DEBUG 紀錄在 sheet 時的單元格顏色<br>Set the cell color when DEBUG is recorded in sheet|
-|set_NOTICE_color|設定 NOTICE 紀錄在 sheet 時的單元格顏色<br>Set the cell color when NOTICE is recorded in sheet|
-|set_use_mail|設定是否要寄email<br>Set whether to send email|
-|set_EMERGENCY_mail|設定遇到log等級 EMERGENCY 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level EMERGENCY,the default is true|
-|set_ALERT_mail|設定遇到log等級 ALERT 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level ALERT,the default is true|
-|set_CRITICAL_mail|設定遇到log等級 CRITICAL 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level CRITICAL,the default is false|
-|set_ERRORmail|設定遇到log等級 ERROR 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level ERROR,the default is false|
-|set_WARNING_mail|設定遇到log等級 WARNING 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level WARNING,the default is false|
-|set_INFO_mail|設定遇到log等級 INFO 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level INFO,the default is false|
-|set_DEBUG_mail|設定遇到log等級 DEBUG 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level DEBUG,the default is false|
-|set_NOTICE_mail|設定遇到log等級 NOTICE 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level NOTICE,the default is true|
-|set_application|設定程式名稱<br>set application name|
+|[set_config](#set_config)|一次設定Logger所有參數。<br>Set Logger all config|
+|[set_logfmt](#set_logfmt)|設定Logger的時間格式<br>Set Logger time format|
+|[set_GMT](#set_GMT)|設定Logger時區，單位GMT<br>Set Logger time zone, unit GMT |
+|[set_use_console](#set_use_console)|設定是否啟用 Stackdriver Logging，預設開啟<br>Set whether to enable Stackdriver Logging, the default is on|
+|[set_use_sheet](#set_use_sheet)|設定是否啟用 sheet，預設關閉<br>Set whether to enable sheet, the default is off|
+|[set_sheet_id](#set_sheet_id)|設定要使用的sheet id<br>Set the sheet id|
+|[set_sheet_page_name](#set_sheet_page_name)|設定要使用的sheet page，預設為 'log'<br>Set the sheet page to use, the default is 'log'|
+|[set_sheet_log_slice](#set_sheet_log_slice)|設定log進sheet時，要不要分欄輸入(A欄、B欄...)<br>When log into the sheet, do you want to enter it in a columns or separate(Column A, Column B...)|
+|[set_level](#set_level)|設定紀錄的等級<br>Set the record level|
+|[set_EMERGENCY_color](#set_XXX_color)|設定 EMERGENCY 紀錄在 sheet 時的單元格顏色<br>Set the cell color when EMERGENCY is recorded in sheet|
+|[set_ALERT_color]|設定 ALERT 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ALERT is recorded in sheet|
+|[set_CRITICAL_color](#set_XXX_color)|設定 CRITICAL 紀錄在 sheet 時的單元格顏色<br>Set the cell color when CRITICAL is recorded in sheet|
+|[set_ERROR_color](#set_XXX_color)|設定 ERROR 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ERROR is recorded in sheet|
+|[set_WARNING_color](#set_XXX_color)|設定 WARNING 紀錄在 sheet 時的單元格顏色<br>Set the cell color when WARNING is recorded in sheet|
+|[set_INFO_color](#set_XXX_color)|設定 INFO 紀錄在 sheet 時的單元格顏色<br>Set the cell color when INFO is recorded in sheet|
+|[set_DEBUG_color](#set_XXX_color)|設定 DEBUG 紀錄在 sheet 時的單元格顏色<br>Set the cell color when DEBUG is recorded in sheet|
+|[set_NOTICE_color](#set_XXX_color)|設定 NOTICE 紀錄在 sheet 時的單元格顏色<br>Set the cell color when NOTICE is recorded in sheet|
+|[set_use_mail](#set_use_mail)|設定是否要寄email<br>Set whether to send email|
+|[set_EMERGENCY_mail](#set_XXX_mail)|設定遇到log等級 EMERGENCY 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level EMERGENCY,the default is true|
+|[set_ALERT_mail](#set_XXX_mail)|設定遇到log等級 ALERT 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level ALERT,the default is true|
+|[set_CRITICAL_mail](#set_XXX_mail)|設定遇到log等級 CRITICAL 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level CRITICAL,the default is false|
+|[set_ERROR_mail](#set_XXX_mail)|設定遇到log等級 ERROR 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level ERROR,the default is false|
+|[set_WARNING_mail](#set_XXX_mail)|設定遇到log等級 WARNING 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level WARNING,the default is false|
+|[set_INFO_mail](#set_XXX_mail)|設定遇到log等級 INFO 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level INFO,the default is false|
+|[set_DEBUG_mail](#set_XXX_mail)|設定遇到log等級 DEBUG 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level DEBUG,the default is false|
+|[set_NOTICE_mail](#set_XXX_mail)|設定遇到log等級 NOTICE 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level NOTICE,the default is true|
+|[set_application](#set_applicationF)|設定程式名稱<br>set application name|
 |log|紀錄log用<br>For logging|
 |emergency|使用 emergency log<br> use emergency log|
 |alert|使用 alert log<br> use alert log|
@@ -224,7 +224,7 @@ function t4() {
 
 
 ## set_GMT
-設定 Logger GMT 時區。
+設定 Logger [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) 時區。
 ```
 set_GMT(GMT)
 ```
@@ -235,7 +235,7 @@ void
 ### Parameters
 |name|type|Description|
 |:---:|:---:|:---:|
-|GMT|string|GMT時區|
+|[GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)|string|GMT時區|
 
 
 ### Explanation
@@ -450,7 +450,7 @@ function t4() {
 
 ## set_XXX_mail
 設定指定 log level 是否寄送 Email。
-如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。
+如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。詳見[Levels](#Levels)
 ```
 set_XXX_mail(boolean)
 ```
@@ -524,13 +524,13 @@ datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 
 ## Levels
 
-|名稱|等級|說明|
-|:--:|:--:|:--:|
-|EMERGENCY|70|緊急|
-|ALERT    |60|快訊|
-|CRITICAL |50|重要|
-|ERROR    |40|錯誤|
-|WARNING  |30|警告|
-|INFO     |20|資訊|
-|DEBUG    |10|除錯|
-|NOTICE   | 0|通知|
+|名稱|等級|說明|預設是否寄信|
+|:--:|:--:|:--:|:--:|
+|EMERGENCY|70|緊急| ✓ |
+|ALERT    |60|快訊| ✓ |
+|CRITICAL |50|重要| ✖ |
+|ERROR    |40|錯誤| ✖ |
+|WARNING  |30|警告| ✖ |
+|INFO     |20|資訊| ✖ |
+|DEBUG    |10|除錯| ✖ |
+|NOTICE   | 0|通知| ✓ |
