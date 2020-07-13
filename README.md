@@ -165,7 +165,9 @@ result：
 
 ## set_config
 
-```set_config(sheet_id, sheet_page_name, logfmt, GMT, datefmt, level)```
+```
+set_config(sheet_id, sheet_page_name, logfmt, GMT, datefmt, level)
+```
 
 
 ### Return
@@ -176,16 +178,56 @@ void
 |:---:|:---:|:---:|
 |sheet_id|string|https://docs.google.com/spreadsheets/d/```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4```/edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
 |sheet_page_name|string|使用sheet中的哪個page，預設是'log'|
-|logfmt|string|logger的log格式|
-|GMT|string|GMT時間|
+|[logfmt](#logfmt)|string|logger的log格式|
+|[GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)|string|GMT時間|
 |datefmt|string|logger的log格式中 時間的紀錄方式|
 |level|string \| number \| Levels|紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式|
 
 ### Explanation
 
 ```
-
+function t4() {
+  console.log("---------------------");
+  var logger = new Logger();
+  logger.set_config(
+    "xxx123",
+    "log_2020/07/13",
+    "%{datefmt} %{levelname} : %{message}",
+    "GMT+0",
+    "yyyy.MM.dd HH:mm:ss",
+    'INFO'
+  )
+  console.log(logger.get_config());
+}
 ```
 
 
-#
+## set_logfmt
+```
+set_logfmt(logfmt)
+```
+
+
+### Return
+void
+
+### Parameters
+|name|type|Description|
+|:---:|:---:|:---:|
+|[logfmt](#logfmt)|string|logger的log格式|
+
+
+### Explanation
+
+```
+function t4() {
+  console.log("---------------------");
+  var logger = new Logger();
+  logger.set_logfmt("%{datefmt} %{levelname} : %{message}")
+  console.log(logger.get_config());
+}
+```
+
+# 元件說明 Component Description
+
+## logfmt
