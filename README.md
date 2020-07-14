@@ -6,10 +6,32 @@ A better console.log Logger.
 You can use sheet, Stackdriver Logging records, you can also use mail to notify.    
 
 ----
+# 目錄 index
+- [如何使用 Getting Started](#如何使用-getting-started)
+- [概觀 Overview](#概觀-Overview)
+- [功能詳細說明 Methods Detailed description](#功能詳細說明-Methods-Detailed-description)
+- [元件說明 Component Description](#元件說明-Component-Description)
 
 # 如何使用 Getting Started
 
-### 一般使用(General use)
+## 安裝
+
+打開 gs 編輯頁面    
+-> "資源"    
+-> "程式庫"    
+-> 將 ```1yZqyhPuoNQQ7tq7NtWLQO3MtczVysoJBOOj7p12bueobQhYObNXTVq2a``` 貼上樹入框    
+-> "新增"    
+-> 選擇最後版本(記得阿 不然儲存不了)    
+-> "儲存"~    
+
+Open Script Editor. And please operate follows by click.    
+-> Resource    
+-> Library    
+-> Input Script ID to text box. Script ID is  ```1yZqyhPuoNQQ7tq7NtWLQO3MtczVysoJBOOj7p12bueobQhYObNXTVq2a```    
+-> Add library    
+-> Please select last version    
+    
+## 一般使用(General use)
 code：
 ```
 function t2() {
@@ -47,7 +69,7 @@ result：
 ![https://imgur.com/tVDnqEQ](https://imgur.com/tVDnqEQ.png)
 
 ----
-### 使用sheet (use sheet)
+## 使用sheet (use sheet)
 code：
 ```
 function t1() {
@@ -82,7 +104,7 @@ result：
 ![Imgur](https://i.imgur.com/Hwhn9n7.png)
 
 ----
-### 使用mail通知(use mail notice)
+## 使用mail通知(use mail notice)
 code：
 ```
 function t3() {
