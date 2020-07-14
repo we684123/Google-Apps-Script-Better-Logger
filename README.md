@@ -30,7 +30,13 @@ Open Script Editor. And please operate follows by click.
 -> Input Script ID to text box. Script ID is  ```1yZqyhPuoNQQ7tq7NtWLQO3MtczVysoJBOOj7p12bueobQhYObNXTVq2a```    
 -> Add library    
 -> Please select last version    
-    
+
+## 注意！ notice!
+目前 gs V8 版本有引入不了的問題    
+詳情請看 [https://issuetracker.google.com/issues/161034235](https://issuetracker.google.com/issues/161034235)
+
+
+
 ## 一般使用(General use)
 code：
 ```
