@@ -564,3 +564,11 @@ datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 |INFO     |20|資訊| ✖ |
 |DEBUG    |10|除錯| ✖ |
 |NOTICE   | 0|通知| ✓ |
+
+----
+
+# 待做 TODO
+
+- 將 log level 完整對應到 Stackdriver Logging 上，不再用其他代替
+- 考慮做file版記錄方式
+- sheet log 是否要做分天、月 log?
