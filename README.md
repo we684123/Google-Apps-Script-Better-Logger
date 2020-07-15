@@ -352,6 +352,7 @@ function t4() {
 
 ## set_sheet_page_name
 用來設定 sheet page name。
+如果沒有在 sheet 中發現指定的 page 名稱，則會自己新增一個。
 ```
 set_sheet_page_name(page_name)
 ```
@@ -444,7 +445,7 @@ void
 ```
 function t4() {
   var logger = new Logger();
-  logger.set_ALERT_color(#ffff00)
+  logger.set_ALERT_color("#ffff00")
   logger.set_level(50)
   logger.alert("顏色 == #ffff00")
 }
