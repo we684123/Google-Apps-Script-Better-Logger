@@ -203,7 +203,7 @@ void
 ### Parameters
 |name|type|Description|
 |:---:|:---:|:---:|
-|sheet_id|string|https://docs.google.com/spreadsheets/d/```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4```/edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
+|sheet_id|string|https://docs.google.com/spreadsheets/d/ ```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4``` /edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
 |sheet_page_name|string|使用sheet中的哪個page，預設是'log'|
 |[logfmt](#logfmt)|string|logger的log格式|
 |[GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)|string|GMT時間|
@@ -337,7 +337,7 @@ void
 ### Parameters
 |name|type|Description|
 |:---:|:---:|:---:|
-|id|string|https://docs.google.com/spreadsheets/d/```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4```/edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
+|id|string|https://docs.google.com/spreadsheets/d/ ```1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4``` /edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)**|
 
 
 ### Explanation
