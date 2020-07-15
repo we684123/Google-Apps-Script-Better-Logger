@@ -344,15 +344,15 @@ void
 ```
 function t4() {
   var logger = new Logger();
-  logger.set_use_sheet("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
+  logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
   console.log(logger.get_config());
 }
 ```
 
 
 ## set_sheet_page_name
-用來設定 sheet page name。
-如果沒有在 sheet 中發現指定的 page 名稱，則會自己新增一個。
+用來設定 sheet page name。    
+如果沒有在 sheet 中發現指定的 page 名稱，則會自己新增一個。    
 ```
 set_sheet_page_name(page_name)
 ```
@@ -453,7 +453,8 @@ function t4() {
 
 
 ## set_use_mail
-設定是否在 log 時寄送 eamil。
+設定是否在 log 時寄送 eamil。    
+預設是 false .    
 ```
 set_use_mail(boolean)
 ```
@@ -553,7 +554,7 @@ datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 
 ## Levels
 
-|名稱|等級|說明|預設是否寄信|
+|名稱|等級|說明|預設是否寄email|
 |:--:|:--:|:--:|:--:|
 |EMERGENCY|70|緊急| ✓ |
 |ALERT    |60|快訊| ✓ |
