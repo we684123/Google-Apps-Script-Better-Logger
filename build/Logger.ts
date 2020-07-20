@@ -9,7 +9,7 @@ const enum Levels {
   NOTICE = 0      //通知
 }
 
-export default class Logger {
+export default class BTLogger {
   description: string
   sheet_id: string
   sheet_page_name: string
