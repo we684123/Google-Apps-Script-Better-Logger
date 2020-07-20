@@ -78,7 +78,7 @@ export default class Logger {
     this.application = "Google_Apps_Script_Logger"
     this.level_label = 'WARNING'
     this.level = this.get_level_correspond(this.level_label)
-    this.user = Session.getActiveUser().getEmail();
+    this.user = Session.getActiveUser().getEmail(); // todo
     this.use_sheet = false
     this.use_console = true
     this.sheet_log_slice = true
@@ -275,7 +275,7 @@ export default class Logger {
   }
 
   private get_fmtdate() {
-    return Utilities.formatDate(new Date(), this.GMT, this.datefmt)
+    return Utilities.formatDate(new Date(), this.GMT, this.datefmt) // todo
   }
 
   private get_level_correspond(level: any, type?: string | number) {
@@ -366,7 +366,7 @@ export default class Logger {
       if (this.use_mail) {
         if (this.levels_use_mail[level_label]) {
           try {
-            GmailApp.sendEmail(
+            GmailApp.sendEmail( // todo
               this.user,
               this.ass_subject(level_label),
               this.ass_msg(level_label, text),
@@ -385,7 +385,7 @@ export default class Logger {
     }
   }
 
-  private log_by_sheet(
+  private log_by_sheet( // todo
     sheet_key: string,
     page: string = 'log',
     text_array: string[] = [],
