@@ -1,4 +1,4 @@
-# Google_Apps_Script_Logger
+# Google_Apps_Script_Better_Logger
 一個比原生 console.log 好一些的 Logger    
 可以用 sheet、Stackdriver Logging 紀錄，還可以用 mail 通知    
 
@@ -20,7 +20,7 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 打開 gs 編輯頁面    
 -> "資源"    
 -> "程式庫"    
--> 將 ```1yZqyhPuoNQQ7tq7NtWLQO3MtczVysoJBOOj7p12bueobQhYObNXTVq2a``` 貼上樹入框    
+-> 將 ```1R4kOenBr5gSIcxUbCYegM4pStj0JzjXdA2jryW5s9J2Phg_ebaykmEgo``` 貼上樹入框    
 -> "新增"    
 -> 選擇最後版本(記得阿 不然儲存不了)    
 -> "儲存"~    
@@ -28,14 +28,9 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 Open Script Editor. And please operate follows by click.    
 -> Resource    
 -> Library    
--> Input Script ID to text box. Script ID is  ```1yZqyhPuoNQQ7tq7NtWLQO3MtczVysoJBOOj7p12bueobQhYObNXTVq2a```    
+-> Input Script ID to text box. Script ID is  ```1R4kOenBr5gSIcxUbCYegM4pStj0JzjXdA2jryW5s9J2Phg_ebaykmEgo```    
 -> Add library    
 -> Please select last version    
-
-## 注意！ notice!
-目前 gs V8 版本有引入不了的問題    
-詳情請看 [https://issuetracker.google.com/issues/161034235](https://issuetracker.google.com/issues/161034235)
-
 
 
 ## 一般使用(General use)
@@ -43,7 +38,7 @@ code：
 ```
 function t2() {
   console.log("---------------------");
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   var levels = logger.levels;
   logger.set_level(logger.levels.NOTICE);
   console.log(logger.get_config());
@@ -81,7 +76,7 @@ code：
 ```
 function t1() {
   console.log("---------------------");
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   var levels = logger.levels;
 
   // 設定要 log 的 sheet page
@@ -116,7 +111,7 @@ code：
 ```
 function t3() {
   console.log("---------------------");
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   console.log(logger.get_config());
   logger.set_level(logger.levels.NOTICE);
 
@@ -214,7 +209,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_config(
     "xxx123",
     "log_2020/07/13",
@@ -245,7 +240,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_logfmt("%{datefmt} %{levelname} : %{message}")
   console.log(logger.get_config());
 }
@@ -270,7 +265,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_GMT("GTM+8")
   console.log(logger.get_config());
 }
@@ -295,7 +290,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_use_console(false)
   console.log(logger.get_config());
 }
@@ -319,7 +314,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_use_sheet(true)
   console.log(logger.get_config());
 }
@@ -344,7 +339,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
   console.log(logger.get_config());
 }
@@ -370,7 +365,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_sheet_page_name("log_2020/07/13")
   console.log(logger.get_config());
 }
@@ -395,7 +390,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_sheet_log_slice(true)
   console.log(logger.get_config());
 }
@@ -420,7 +415,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_level('WARNING')
   console.log(logger.get_config());
 }
@@ -445,7 +440,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_ALERT_color("#ffff00")
   logger.set_level(50)
   logger.alert("顏色 == #ffff00")
@@ -472,7 +467,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_use_mail(true)
   logger.alert("寄送 Email!")
 }
@@ -498,7 +493,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_ERROR_mail(true)
   logger.error("寄送 email!")
 }
@@ -524,7 +519,7 @@ void
 ### Explanation
 ```
 function t4() {
-  var logger = new Logger();
+  var logger = new BetterLogger.BetterLogger();
   logger.set_application("minecraft")
   logger.notice("伺服器重啟成功！")
 }
