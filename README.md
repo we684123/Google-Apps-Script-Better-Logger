@@ -35,7 +35,7 @@ Open Script Editor. And please operate follows by click.
 
 ## 一般使用(General use)
 code：
-```
+```javascript
 function t2() {
   console.log("---------------------");
   var logger = new BetterLogger.BetterLogger();
@@ -73,7 +73,7 @@ result：
 ----
 ## 使用sheet (use sheet)
 code：
-```
+```javascript
 function t1() {
   console.log("---------------------");
   var logger = new BetterLogger.BetterLogger();
@@ -108,7 +108,7 @@ result：
 ----
 ## 使用mail通知(use mail notice)
 code：
-```
+```javascript
 function t3() {
   console.log("---------------------");
   var logger = new BetterLogger.BetterLogger();
@@ -189,7 +189,7 @@ result：
 
 ## set_config
 設定 Logger。
-```
+```javascript
 set_config(sheet_id, sheet_page_name, logfmt, GMT, datefmt, level)
 ```
 
@@ -207,7 +207,7 @@ void
 |level|string \| number \| Levels|紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式|
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_config(
@@ -225,7 +225,7 @@ function t4() {
 
 ## set_logfmt
 設定log格式。
-```
+```javascript
 set_logfmt(logfmt)
 ```
 
@@ -238,7 +238,7 @@ void
 |[logfmt](#logfmt)|string|logger的log格式|
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_logfmt("%{datefmt} %{levelname} : %{message}")
@@ -249,7 +249,7 @@ function t4() {
 
 ## set_GMT
 設定 Logger [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) 時區。
-```
+```javascript
 set_GMT(GMT)
 ```
 
@@ -263,7 +263,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_GMT("GTM+8")
@@ -288,7 +288,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_use_console(false)
@@ -312,7 +312,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_use_sheet(true)
@@ -323,7 +323,7 @@ function t4() {
 
 ## set_sheet_id
 用來設定 sheet id。
-```
+```javascript
 set_sheet_id(id)
 ```
 
@@ -337,7 +337,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_sheet_id("1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4")
@@ -349,7 +349,7 @@ function t4() {
 ## set_sheet_page_name
 用來設定 sheet page name。    
 如果沒有在 sheet 中發現指定的 page 名稱，則會自己新增一個。    
-```
+```javascript
 set_sheet_page_name(page_name)
 ```
 
@@ -363,7 +363,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_sheet_page_name("log_2020/07/13")
@@ -374,7 +374,7 @@ function t4() {
 
 ## set_sheet_log_slice
 設定 sheet log 是否要。
-```
+```javascript
 set_sheet_log_slice(boolean)
 ```
 
@@ -388,7 +388,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_sheet_log_slice(true)
@@ -399,7 +399,7 @@ function t4() {
 
 ## set_level
 設定 log level。
-```
+```javascript
 set_level(level)
 ```
 
@@ -413,7 +413,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_level('WARNING')
@@ -438,7 +438,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_ALERT_color("#ffff00")
@@ -451,7 +451,7 @@ function t4() {
 ## set_use_mail
 設定是否在 log 時寄送 eamil。    
 預設是 false .    
-```
+```javascript
 set_use_mail(boolean)
 ```
 
@@ -465,7 +465,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_use_mail(true)
@@ -477,7 +477,7 @@ function t4() {
 ## set_XXX_mail
 設定指定 log level 是否寄送 Email。
 如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。詳見[Levels](#Levels)
-```
+```javascript
 set_XXX_mail(boolean)
 ```
 
@@ -491,7 +491,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_ERROR_mail(true)
@@ -501,9 +501,9 @@ function t4() {
 
 
 ## set_application
-設定指定 log level 是否寄送 Email。
-如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。
-```
+設定指定寄送 Email 時，標題的名稱。
+預設 "Google_Apps_Script_Logger"。
+```javascript
 set_application(subject)
 ```
 
@@ -517,7 +517,7 @@ void
 
 
 ### Explanation
-```
+```javascript
 function t4() {
   var logger = new BetterLogger.BetterLogger();
   logger.set_application("minecraft")
