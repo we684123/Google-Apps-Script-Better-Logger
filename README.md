@@ -117,7 +117,7 @@ function t3() {
 
   // 啟動 mail 通知 (在沒有特別設定的情況下，只有 EMERGENCY、ALERT、NOTICE 3個會通知)
   // Turn on mail notice, if you not change setting, only EMERGENCY、ALERT、NOTICE will notice
-  logger.set_use_mail = true;
+  logger.set_use_mail(true)
 
   // 這裡填寫你的程式名稱 寄信時當作標題用
   // there fill in the name of your program , will use it as the title when sending a mail.
@@ -373,7 +373,8 @@ function t4() {
 
 
 ## set_sheet_log_slice
-設定 sheet log 是否要。
+設定 log 進 sheet 時，要不要分欄輸入(A欄、B欄...)
+如果是 false 就只輸出1欄。
 ```javascript
 set_sheet_log_slice(boolean)
 ```
