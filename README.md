@@ -373,7 +373,7 @@ function t4() {
 
 
 ## set_sheet_log_slice
-設定 log 進 sheet 時，要不要分欄輸入(A欄、B欄...)
+設定 log 進 sheet 時，要不要分欄輸入(A欄、B欄...)    
 如果是 false 就只輸出1欄。
 ```javascript
 set_sheet_log_slice(boolean)
