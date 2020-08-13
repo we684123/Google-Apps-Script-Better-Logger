@@ -20,7 +20,7 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 打開 gs 編輯頁面    
 -> "資源"    
 -> "程式庫"    
--> 將 ```1R4kOenBr5gSIcxUbCYegM4pStj0JzjXdA2jryW5s9J2Phg_ebaykmEgo``` 貼上樹入框    
+-> 將 ```1R4kOenBr5gSIcxUbCYegM4pStj0JzjXdA2jryW5s9J2Phg_ebaykmEgo``` 貼上輸入框    
 -> "新增"    
 -> 選擇最後版本(記得阿 不然儲存不了)    
 -> "儲存"~    
