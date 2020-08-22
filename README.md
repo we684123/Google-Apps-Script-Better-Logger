@@ -1,4 +1,4 @@
-# Google_Apps_Script_Better_Logger
+# Google Apps Script Better Logger
 
 一個比原生 console.log 好一些的 Logger  
 可以用 sheet、Stackdriver Logging 紀錄，還可以用 mail 通知    
