@@ -18,7 +18,7 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 
 # 如何使用 Getting Started
 
-## 安裝
+## 安裝(install)
 
 打開 gs 編輯頁面  
 -> "資源"  
@@ -54,8 +54,8 @@ function t2() {
   logger.log(levels.CRITICAL, '這是測試 CRITICAL !!!!!');
   logger.log(levels.ERROR, '這是測試 ERROR !!!!!');
   logger.log(levels.WARNING, '這是測試 WARNING !!!!!');
-  logger.log(levels.DEBUG, '這是測試 DEBUG !!!!!');
   logger.log(levels.INFO, '這是測試 INFO !!!!!');
+  logger.log(levels.DEBUG, '這是測試 DEBUG !!!!!');
   logger.log(levels.NOTICE, '這是測試 NOTICE !!!!!');
 
   // 這是第2種
@@ -65,14 +65,14 @@ function t2() {
   logger.critical('這是測試 CRITICAL =====');
   logger.error('這是測試 ERROR =====');
   logger.warning('這是測試 WARNING =====');
-  logger.debug('這是測試 DEBUG =====');
   logger.info('這是測試 INFO =====');
+  logger.debug('這是測試 DEBUG =====');
   logger.notice('這是測試 NOTICE =====');
 }
 ```
 
 result：
-![https://imgur.com/tVDnqEQ](https://imgur.com/tVDnqEQ.png)
+![https://imgur.com/l3V7qHL](https://imgur.com/l3V7qHL.png)
 
 * * *
 
@@ -102,15 +102,15 @@ function t1() {
   logger.critical('這是測試 CRITICAL =====');
   logger.error('這是測試 ERROR =====');
   logger.warning('這是測試 WARNING =====');
-  logger.debug('這是測試 DEBUG =====');
   logger.info('這是測試 INFO =====');
+  logger.debug('這是測試 DEBUG =====');
   logger.notice('這是測試 NOTICE =====');
 }
 ```
 
 result：
-![Imgur](https://i.imgur.com/uQRXeZw.png)
-![Imgur](https://i.imgur.com/Hwhn9n7.png)
+![https://imgur.com/6rNuqW2](https://imgur.com/6rNuqW2.png)
+![https://imgur.com/YCZDDJm](https://imgur.com/YCZDDJm.png)
 
 * * *
 
@@ -139,16 +139,16 @@ function t3() {
   logger.critical('這是測試 CRITICAL =====');
   logger.error('這是測試 ERROR =====');
   logger.warning('這是測試 WARNING =====');
-  logger.debug('這是測試 DEBUG =====');
   logger.info('這是測試 INFO =====');
+  logger.debug('這是測試 DEBUG =====');
   logger.notice('這是測試 NOTICE =====');
 }
 ```
 
 result：
-![Imgur](https://i.imgur.com/SnRlJGB.png)
-![Imgur](https://i.imgur.com/d0PG8qf.png)
-![Imgur](https://i.imgur.com/U0FHOPh.png)
+![https://imgur.com/zsrH8Ld](https://imgur.com/zsrH8Ld.png)
+![https://imgur.com/qvmNsfn](https://imgur.com/qvmNsfn.png)
+![https://imgur.com/BdHb7ng](https://imgur.com/BdHb7ng.png)
 
 * * *
 
@@ -156,26 +156,26 @@ result：
 
 # 概觀 Overview
 
-| 功能 Methods                                  |                                                           說明 Explanation                                                           |
-| ------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------: |
-| [set_config](#set_config)                   |                                              一次設定Logger所有參數。<br>Set Logger all config                                              |
-| [set_logfmt](#set_logfmt)                   |                                               設定Logger的時間格式<br>Set Logger time format                                              |
-| [set_GMT](#set_GMT)                         |                                         設定Logger時區，單位GMT<br>Set Logger time zone, unit GMT                                         |
-| [set_use_console](#set_use_console)         |                   設定是否啟用 Stackdriver Logging，預設開啟<br>Set whether to enable Stackdriver Logging, the default is on                  |
-| [set_use_sheet](#set_use_sheet)             |                                設定是否啟用 sheet，預設關閉<br>Set whether to enable sheet, the default is off                                |
-| [set_sheet_id](#set_sheet_id)               |                                                 設定要使用的sheet id<br>Set the sheet id                                                 |
-| [set_sheet_page_name](#set_sheet_page_name) |                            設定要使用的sheet page，預設為 'log'<br>Set the sheet page to use, the default is 'log'                           |
+| 功能 Methods                                |                                                                 說明 Explanation                                                                  |
+| ------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
+| [set_config](#set_config)                   |                                                 一次設定Logger所有參數。<br>Set Logger all config                                                 |
+| [set_logfmt](#set_logfmt)                   |                                                  設定Logger的時間格式<br>Set Logger time format                                                   |
+| [set_GMT](#set_GMT)                         |                                             設定Logger時區，單位GMT<br>Set Logger time zone, unit GMT                                             |
+| [set_use_console](#set_use_console)         |                    設定是否啟用 Stackdriver Logging，預設開啟<br>Set whether to enable Stackdriver Logging, the default is on                     |
+| [set_use_sheet](#set_use_sheet)             |                                  設定是否啟用 sheet，預設關閉<br>Set whether to enable sheet, the default is off                                  |
+| [set_sheet_id](#set_sheet_id)               |                                                     設定要使用的sheet id<br>Set the sheet id                                                      |
+| [set_sheet_page_name](#set_sheet_page_name) |                              設定要使用的sheet page，預設為 'log'<br>Set the sheet page to use, the default is 'log'                              |
 | [set_sheet_log_slice](#set_sheet_log_slice) | 設定log進sheet時，要不要分欄輸入(A欄、B欄...)<br>When log into the sheet, do you want to enter it in a columns or separate(Column A, Column B...) |
-| [set_level](#set_level)                     |                                                   設定紀錄的等級<br>Set the record level                                                  |
-| [set_EMERGENCY_color](#set_XXX_color)       |                      設定 EMERGENCY 紀錄在 sheet 時的單元格顏色<br>Set the cell color when EMERGENCY is recorded in sheet                      |
-| [set_ALERT_color](#set_XXX_color)           |                          設定 ALERT 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ALERT is recorded in sheet                          |
-| [set_CRITICAL_color](#set_XXX_color)        |                       設定 CRITICAL 紀錄在 sheet 時的單元格顏色<br>Set the cell color when CRITICAL is recorded in sheet                       |
-| [set_ERROR_color](#set_XXX_color)           |                          設定 ERROR 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ERROR is recorded in sheet                          |
-| [set_WARNING_color](#set_XXX_color)         |                        設定 WARNING 紀錄在 sheet 時的單元格顏色<br>Set the cell color when WARNING is recorded in sheet                        |
-| [set_INFO_color](#set_XXX_color)            |                           設定 INFO 紀錄在 sheet 時的單元格顏色<br>Set the cell color when INFO is recorded in sheet                           |
-| [set_DEBUG_color](#set_XXX_color)           |                          設定 DEBUG 紀錄在 sheet 時的單元格顏色<br>Set the cell color when DEBUG is recorded in sheet                          |
-| [set_NOTICE_color](#set_XXX_color)          |                         設定 NOTICE 紀錄在 sheet 時的單元格顏色<br>Set the cell color when NOTICE is recorded in sheet                         |
-| [set_use_mail](#set_use_mail)               |                                              設定是否要寄email<br>Set whether to send email                                              |
+| [set_level](#set_level)                     |                                                      設定紀錄的等級<br>Set the record level                                                       |
+| [set_EMERGENCY_color](#set_XXX_color)       |                       設定 EMERGENCY 紀錄在 sheet 時的單元格顏色<br>Set the cell color when EMERGENCY is recorded in sheet                        |
+| [set_ALERT_color](#set_XXX_color)           |                           設定 ALERT 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ALERT is recorded in sheet                            |
+| [set_CRITICAL_color](#set_XXX_color)        |                        設定 CRITICAL 紀錄在 sheet 時的單元格顏色<br>Set the cell color when CRITICAL is recorded in sheet                         |
+| [set_ERROR_color](#set_XXX_color)           |                           設定 ERROR 紀錄在 sheet 時的單元格顏色<br>Set the cell color when ERROR is recorded in sheet                            |
+| [set_WARNING_color](#set_XXX_color)         |                         設定 WARNING 紀錄在 sheet 時的單元格顏色<br>Set the cell color when WARNING is recorded in sheet                          |
+| [set_INFO_color](#set_XXX_color)            |                            設定 INFO 紀錄在 sheet 時的單元格顏色<br>Set the cell color when INFO is recorded in sheet                             |
+| [set_DEBUG_color](#set_XXX_color)           |                           設定 DEBUG 紀錄在 sheet 時的單元格顏色<br>Set the cell color when DEBUG is recorded in sheet                            |
+| [set_NOTICE_color](#set_XXX_color)          |                          設定 NOTICE 紀錄在 sheet 時的單元格顏色<br>Set the cell color when NOTICE is recorded in sheet                           |
+| [set_use_mail](#set_use_mail)               |                                                  設定是否要寄email<br>Set whether to send email                                                   |
 | [set_EMERGENCY_mail](#set_XXX_mail)         |   設定遇到log等級 EMERGENCY 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level EMERGENCY,the default is true   |
 | [set_ALERT_mail](#set_XXX_mail)             |       設定遇到log等級 ALERT 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level ALERT,the default is true       |
 | [set_CRITICAL_mail](#set_XXX_mail)          |   設定遇到log等級 CRITICAL 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level CRITICAL,the default is false   |
@@ -184,16 +184,16 @@ result：
 | [set_INFO_mail](#set_XXX_mail)              |       設定遇到log等級 INFO 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level INFO,the default is false       |
 | [set_DEBUG_mail](#set_XXX_mail)             |      設定遇到log等級 DEBUG 時，是否要寄送 mail,預設 false<br>Set whether to send mail when encountering log level DEBUG,the default is false      |
 | [set_NOTICE_mail](#set_XXX_mail)            |      設定遇到log等級 NOTICE 時，是否要寄送 mail,預設 true<br>Set whether to send mail when encountering log level NOTICE,the default is true      |
-| [set_application](#set_applicationF)        |                                                   設定程式名稱<br>set application name                                                   |
-| log                                         |                                                        紀錄log用<br>For logging                                                       |
-| emergency                                   |                                               使用 emergency log<br> use emergency log                                               |
-| alert                                       |                                                   使用 alert log<br> use alert log                                                   |
-| critical                                    |                                                使用 critical log<br> use critical log                                                |
-| error                                       |                                                   使用 error log<br> use error log                                                   |
-| warning                                     |                                                 使用 warning log<br> use warning log                                                 |
-| info                                        |                                                    使用 info log<br> use info log                                                    |
-| debug                                       |                                                   使用 debug log<br> use debug log                                                   |
-| notice                                      |                                                  使用 notice log<br> use notice log                                                  |
+| [set_application](#set_applicationF)        |                                                       設定程式名稱<br>set application name                                                        |
+| log                                         |                                                             紀錄log用<br>For logging                                                              |
+| emergency                                   |                                                     使用 emergency log<br> use emergency log                                                      |
+| alert                                       |                                                         使用 alert log<br> use alert log                                                          |
+| critical                                    |                                                      使用 critical log<br> use critical log                                                       |
+| error                                       |                                                         使用 error log<br> use error log                                                          |
+| warning                                     |                                                       使用 warning log<br> use warning log                                                        |
+| info                                        |                                                          使用 info log<br> use info log                                                           |
+| debug                                       |                                                         使用 debug log<br> use debug log                                                          |
+| notice                                      |                                                        使用 notice log<br> use notice log                                                         |
 
 * * *
 
@@ -213,14 +213,14 @@ void
 
 ### Parameters
 
-|                                       name                                       |            type            |                                                            Description                                                            |
-| :------------------------------------------------------------------------------: | :------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
+|                                       name                                       |            type            |                                                                  Description                                                                  |
+| :------------------------------------------------------------------------------: | :------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                     sheet_id                                     |           string           | <https://docs.google.com/spreadsheets/d/> `1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4` /edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)** |
-|                                  sheet_page_name                                 |           string           |                                                      使用sheet中的哪個page，預設是'log'                                                     |
-|                                 [logfmt](#logfmt)                                |           string           |                                                            logger的log格式                                                           |
-| [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) |           string           |                                                               GMT時間                                                               |
-|                                [datefmt](#datefmt)                               |           string           |                                                       logger的log格式中 時間的紀錄方式                                                       |
-|                                       level                                      | string \| number \| Levels |                                        紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式                                       |
+|                                 sheet_page_name                                  |           string           |                                                      使用sheet中的哪個page，預設是'log'                                                       |
+|                                [logfmt](#logfmt)                                 |           string           |                                                                logger的log格式                                                                |
+| [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) |           string           |                                                                    GMT時間                                                                    |
+|                               [datefmt](#datefmt)                                |           string           |                                                       logger的log格式中 時間的紀錄方式                                                        |
+|                                      level                                       | string \| number \| Levels |                                     紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式                                      |
 
 ### Explanation
 
@@ -253,8 +253,8 @@ void
 
 ### Parameters
 
-|        name       |  type  |  Description |
-| :---------------: | :----: | :----------: |
+|       name        |  type  |   Description   |
+| :---------------: | :----: | :-------------: |
 | [logfmt](#logfmt) | string | logger的log格式 |
 
 ### Explanation
@@ -283,7 +283,7 @@ void
 
 |                                       name                                       |  type  | Description |
 | :------------------------------------------------------------------------------: | :----: | :---------: |
-| [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) | string |    GMT時區    |
+| [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) | string |   GMT時區   |
 
 ### Explanation
 
@@ -307,7 +307,7 @@ void
 
 ### Parameters
 
-|   name  |   type  |  Description  |
+|  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true or false |
 
@@ -333,7 +333,7 @@ void
 
 ### Parameters
 
-|   name  |   type  |  Description  |
+|  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true or false |
 
@@ -361,9 +361,9 @@ void
 
 ### Parameters
 
-| name |  type  |                                                            Description                                                            |
-| :--: | :----: | :-------------------------------------------------------------------------------------------------------------------------------: |
-|  id  | string | <https://docs.google.com/spreadsheets/d/> `1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4` /edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)** |
+| name  |  type  |                                                                  Description                                                                  |
+| :---: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
+|  id   | string | <https://docs.google.com/spreadsheets/d/> `1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4` /edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)** |
 
 ### Explanation
 
@@ -390,8 +390,8 @@ void
 
 ### Parameters
 
-|    name   |  type  |        Description       |
-| :-------: | :----: | :----------------------: |
+|   name    |  type  |            Description             |
+| :-------: | :----: | :--------------------------------: |
 | page_name | string | 使用sheet中的哪個page，預設是'log' |
 
 ### Explanation
@@ -419,8 +419,8 @@ void
 
 ### Parameters
 
-|   name  |   type  |           Description          |
-| :-----: | :-----: | :----------------------------: |
+|  name   |  type   |                  Description                  |
+| :-----: | :-----: | :-------------------------------------------: |
 | boolean | boolean | 設定log進sheet時，要不要分欄輸入(A欄、B欄...) |
 
 ### Explanation
@@ -447,8 +447,8 @@ void
 
 ### Parameters
 
-|  name |                  type                 |                      Description                     |
-| :---: | :-----------------------------------: | :--------------------------------------------------: |
+| name  |                 type                  |                             Description                              |
+| :---: | :-----------------------------------: | :------------------------------------------------------------------: |
 | level | string \| number \| [Levels](#Levels) | 紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式 |
 
 ### Explanation
@@ -473,8 +473,8 @@ void
 
 ### Parameters
 
-|  name |  type  |                                   Description                                  |
-| :---: | :----: | :----------------------------------------------------------------------------: |
+| name  |  type  |                                      Description                                       |
+| :---: | :----: | :------------------------------------------------------------------------------------: |
 | color | string | [十六進位字串顏色](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E9%A2%9C%E8%89%B2) |
 
 ### Explanation
@@ -503,7 +503,7 @@ void
 
 ### Parameters
 
-|   name  |   type  |  Description  |
+|  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true of false |
 
@@ -532,7 +532,7 @@ void
 
 ### Parameters
 
-|   name  |   type  |  Description  |
+|  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true of false |
 
@@ -561,9 +561,9 @@ void
 
 ### Parameters
 
-|   name  |  type  | Description |
-| :-----: | :----: | :---------: |
-| subject | string |   寄信時的標題名稱  |
+|  name   |  type  |   Description    |
+| :-----: | :----: | :--------------: |
+| subject | string | 寄信時的標題名稱 |
 
 ### Explanation
 
@@ -585,12 +585,12 @@ logfmt 預設是 "%{datefmt} - %{user} - %{levelname} : %{message}"
 
 ### 種類
 
-|     名稱    |                  說明                  |
-| :-------: | :----------------------------------: |
-|  datefmt  |   是時間格式化後的字串，詳見[datefmt](#datefmt)   |
-|    user   | 為使用這個Logger的google帳號 (xxx@gmail.com) |
-| levelname |      是log的等級，詳見[levels](#levels)     |
-|  message  |              是你想記錄的訊息文字              |
+|   名稱    |                     說明                      |
+| :-------: | :-------------------------------------------: |
+|  datefmt  | 是時間格式化後的字串，詳見[datefmt](#datefmt) |
+|   user    | 為使用這個Logger的google帳號 (xxx@gmail.com)  |
+| levelname |      是log的等級，詳見[levels](#levels)       |
+|  message  |             是你想記錄的訊息文字              |
 
 ## datefmt
 
@@ -599,16 +599,16 @@ datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 
 ## Levels
 
-|     名稱    |  等級 |  說明 | 預設是否寄email |
-| :-------: | :-: | :-: | :--------: |
-| EMERGENCY |  70 |  緊急 |      ✓     |
-|   ALERT   |  60 |  快訊 |      ✓     |
-|  CRITICAL |  50 |  重要 |      ✖     |
-|   ERROR   |  40 |  錯誤 |      ✖     |
-|  WARNING  |  30 |  警告 |      ✖     |
-|    INFO   |  20 |  資訊 |      ✖     |
-|   DEBUG   |  10 |  除錯 |      ✖     |
-|   NOTICE  |  0  |  通知 |      ✓     |
+|   名稱    | 等級  | 說明  | 預設是否寄email |
+| :-------: | :---: | :---: | :-------------: |
+| EMERGENCY |  70   | 緊急  |        ✓        |
+|   ALERT   |  60   | 快訊  |        ✓        |
+| CRITICAL  |  50   | 重要  |        ✖        |
+|   ERROR   |  40   | 錯誤  |        ✖        |
+|  WARNING  |  30   | 警告  |        ✖        |
+|   INFO    |  20   | 資訊  |        ✖        |
+|   DEBUG   |  10   | 除錯  |        ✖        |
+|  NOTICE   |   0   | 通知  |        ✓        |
 
 * * *
 
