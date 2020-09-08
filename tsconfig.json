@@ -2,9 +2,12 @@
   "compilerOptions": {
     "plugins": [{
       "name": "typescript-deno-plugin"
-    }]
+    }],
+    "declaration":true,
+    "sourceMap":true,
+    "types" : ["google-apps-script"]
   },
   "files": [
-    "node_modules"
+    "BetterLogger"
   ]
 }

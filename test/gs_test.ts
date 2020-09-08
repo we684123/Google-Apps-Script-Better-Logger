@@ -1,7 +1,3 @@
-import Logger from './BetterLogger.ts'
-
-
-
 function t1() {
   console.log("---------------------");
   let logger = new Logger()
