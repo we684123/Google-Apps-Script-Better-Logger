@@ -8,6 +8,6 @@
     "types" : ["google-apps-script"]
   },
   "files": [
-    "BetterLogger"
+    "BetterLogger.ts"
   ]
 }
