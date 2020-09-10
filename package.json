@@ -1,0 +1,33 @@
+{
+  "name": "google-apps-script-better-logger",
+  "version": "0.1.0",
+  "description": "On google apps script use better logger. this package just a Better-Logger type assist.",
+  "main": "BetterLogger.js",
+  "types": "BetterLogger.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/we684123/Google_Apps_Script_Logger.git"
+  },
+  "keywords": [
+    "google",
+    "apps",
+    "script",
+    "log",
+    "Better",
+    "Logger"
+  ],
+  "author": "we684123",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/we684123/Google_Apps_Script_Logger/issues"
+  },
+  "homepage": "https://github.com/we684123/Google_Apps_Script_Logger#readme"
+}
