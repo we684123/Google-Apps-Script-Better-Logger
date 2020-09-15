@@ -1,4 +1,4 @@
-const enum Levels {
+export const enum Levels {
   EMERGENCY = 70, //緊急
   ALERT = 60,     //快訊
   CRITICAL = 50,  //重要
@@ -9,7 +9,7 @@ const enum Levels {
   NOTICE = 0      //通知
 }
 
-export default class BetterLogger {
+export class BetterLogger {
   description: string
   sheet_id: string
   sheet_page_name: string

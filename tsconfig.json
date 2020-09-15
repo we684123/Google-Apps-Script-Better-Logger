@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "plugins": [{
-      "name": "typescript-deno-plugin"
-    }],
+    "plugins": [],
     "declaration":true,
     "sourceMap":true,
     "types" : ["google-apps-script"]

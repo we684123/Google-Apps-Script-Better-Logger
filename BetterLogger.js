@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.BetterLogger = void 0;
 var BetterLogger = /** @class */ (function () {
     function BetterLogger() {
         this.description =
@@ -332,5 +333,5 @@ var BetterLogger = /** @class */ (function () {
     };
     return BetterLogger;
 }());
-exports["default"] = BetterLogger;
+exports.BetterLogger = BetterLogger;
 //# sourceMappingURL=BetterLogger.js.map

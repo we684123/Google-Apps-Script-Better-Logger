@@ -1,6 +1,6 @@
 {
   "name": "google-apps-script-better-logger",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "On google apps script use better logger. this package just a Better-Logger type assist.",
   "main": "BetterLogger.js",
   "types": "BetterLogger.d.ts",
