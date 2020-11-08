@@ -15,14 +15,14 @@ var BetterLogger = /** @class */ (function () {
         // 格式設定看這裡
         // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
         this.levels = {
-            "EMERGENCY": 70 /* 'EMERGENCY' */,
-            "ALERT": 60 /* 'ALERT' */,
-            "CRITICAL": 50 /* 'CRITICAL' */,
-            "ERROR": 40 /* 'ERROR' */,
-            "WARNING": 30 /* 'WARNING' */,
-            "INFO": 20 /* 'INFO' */,
-            "DEBUG": 10 /* 'DEBUG' */,
-            "NOTICE": 0 /* 'NOTICE' */
+            "EMERGENCY": 70 /* "EMERGENCY" */,
+            "ALERT": 60 /* "ALERT" */,
+            "CRITICAL": 50 /* "CRITICAL" */,
+            "ERROR": 40 /* "ERROR" */,
+            "WARNING": 30 /* "WARNING" */,
+            "INFO": 20 /* "INFO" */,
+            "DEBUG": 10 /* "DEBUG" */,
+            "NOTICE": 0 /* "NOTICE" */
         };
         this.levels_colors = {
             "EMERGENCY": "#ff0000",
@@ -48,7 +48,7 @@ var BetterLogger = /** @class */ (function () {
         this.mail_subject_fmt = "%{application} %{log_level}";
         // 暫時就這2個
         this.application = "Google_Apps_Script_Logger";
-        this.level_label = 'WARNING';
+        this.level_label = "WARNING";
         this.level = this.get_level_correspond(this.level_label);
         this.user = Session.getActiveUser().getEmail(); // todo
         this.use_sheet = false;
@@ -69,7 +69,7 @@ var BetterLogger = /** @class */ (function () {
         this.GMT = GMT;
         this.datefmt = datefmt;
         this.level = level;
-        this.level_label = 'WARNING';
+        this.level_label = "WARNING";
         var rt = this.get_level_correspond(level, 0);
         if (rt == undefined) {
             throw (new Error('level is not allow!'));
@@ -111,55 +111,55 @@ var BetterLogger = /** @class */ (function () {
         this.level = rt;
     };
     BetterLogger.prototype.set_EMERGENCY_color = function (color) {
-        this.levels['EMERGENCY'] = color;
+        this.levels["EMERGENCY"] = color;
     };
     BetterLogger.prototype.set_ALERT_color = function (color) {
-        this.levels['ALERT'] = color;
+        this.levels["ALERT"] = color;
     };
     BetterLogger.prototype.set_CRITICAL_color = function (color) {
-        this.levels['CRITICAL'] = color;
+        this.levels["CRITICAL"] = color;
     };
     BetterLogger.prototype.set_ERROR_color = function (color) {
-        this.levels['ERROR'] = color;
+        this.levels["ERROR"] = color;
     };
     BetterLogger.prototype.set_WARNING_color = function (color) {
-        this.levels['WARNING'] = color;
+        this.levels["WARNING"] = color;
     };
     BetterLogger.prototype.set_INFO_color = function (color) {
-        this.levels['INFO'] = color;
+        this.levels["INFO"] = color;
     };
     BetterLogger.prototype.set_DEBUG_color = function (color) {
-        this.levels['DEBUG'] = color;
+        this.levels["DEBUG"] = color;
     };
     BetterLogger.prototype.set_NOTICE_color = function (color) {
-        this.levels['NOTICE'] = color;
+        this.levels["NOTICE"] = color;
     };
     BetterLogger.prototype.set_use_mail = function (yn) {
         this.use_mail = yn;
     };
     BetterLogger.prototype.set_EMERGENCY_mail = function (yn) {
-        this.levels['EMERGENCY'] = yn;
+        this.levels["EMERGENCY"] = yn;
     };
     BetterLogger.prototype.set_ALERT_mail = function (yn) {
-        this.levels['ALERT'] = yn;
+        this.levels["ALERT"] = yn;
     };
     BetterLogger.prototype.set_CRITICAL_mail = function (yn) {
-        this.levels['CRITICAL'] = yn;
+        this.levels["CRITICAL"] = yn;
     };
     BetterLogger.prototype.set_ERROR_mail = function (yn) {
-        this.levels['ERROR'] = yn;
+        this.levels["ERROR"] = yn;
     };
     BetterLogger.prototype.set_WARNING_mail = function (yn) {
-        this.levels['WARNING'] = yn;
+        this.levels["WARNING"] = yn;
     };
     BetterLogger.prototype.set_INFO_mail = function (yn) {
-        this.levels['INFO'] = yn;
+        this.levels["INFO"] = yn;
     };
     BetterLogger.prototype.set_DEBUG_mail = function (yn) {
-        this.levels['DEBUG'] = yn;
+        this.levels["DEBUG"] = yn;
     };
     BetterLogger.prototype.set_NOTICE_mail = function (yn) {
-        this.levels['NOTICE'] = yn;
+        this.levels["NOTICE"] = yn;
     };
     BetterLogger.prototype.log = function (level_label, text) {
         this.do_log(level_label, text);

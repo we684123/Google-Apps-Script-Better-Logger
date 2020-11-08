@@ -43,14 +43,14 @@ export class BetterLogger {
     // 格式設定看這裡
     // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
     this.levels = {
-      "EMERGENCY": Levels['EMERGENCY'],
-      "ALERT": Levels['ALERT'],
-      "CRITICAL": Levels['CRITICAL'],
-      "ERROR": Levels['ERROR'],
-      "WARNING": Levels['WARNING'],
-      "INFO": Levels['INFO'],
-      "DEBUG": Levels['DEBUG'],
-      "NOTICE": Levels['NOTICE']
+      "EMERGENCY": Levels["EMERGENCY"],
+      "ALERT": Levels["ALERT"],
+      "CRITICAL": Levels["CRITICAL"],
+      "ERROR": Levels["ERROR"],
+      "WARNING": Levels["WARNING"],
+      "INFO": Levels["INFO"],
+      "DEBUG": Levels["DEBUG"],
+      "NOTICE": Levels["NOTICE"]
     }
     this.levels_colors = {
       "EMERGENCY": "#ff0000",
@@ -76,7 +76,7 @@ export class BetterLogger {
     this.mail_subject_fmt = "%{application} %{log_level}"
     // 暫時就這2個
     this.application = "Google_Apps_Script_Logger"
-    this.level_label = 'WARNING'
+    this.level_label = "WARNING"
     this.level = this.get_level_correspond(this.level_label)
     this.user = Session.getActiveUser().getEmail(); // todo
     this.use_sheet = false
@@ -122,7 +122,7 @@ export class BetterLogger {
     this.GMT = GMT
     this.datefmt = datefmt
     this.level = level
-    this.level_label = 'WARNING'
+    this.level_label = "WARNING"
     let rt = this.get_level_correspond(level, 0)
     if (rt == undefined) {
       throw (new Error('level is not allow!'))
@@ -173,56 +173,56 @@ export class BetterLogger {
   }
 
   public set_EMERGENCY_color(color: string): void {
-    this.levels['EMERGENCY'] = color
+    this.levels["EMERGENCY"] = color
   }
   public set_ALERT_color(color: string): void {
-    this.levels['ALERT'] = color
+    this.levels["ALERT"] = color
   }
   public set_CRITICAL_color(color: string): void {
-    this.levels['CRITICAL'] = color
+    this.levels["CRITICAL"] = color
   }
   public set_ERROR_color(color: string): void {
-    this.levels['ERROR'] = color
+    this.levels["ERROR"] = color
   }
   public set_WARNING_color(color: string): void {
-    this.levels['WARNING'] = color
+    this.levels["WARNING"] = color
   }
   public set_INFO_color(color: string): void {
-    this.levels['INFO'] = color
+    this.levels["INFO"] = color
   }
   public set_DEBUG_color(color: string): void {
-    this.levels['DEBUG'] = color
+    this.levels["DEBUG"] = color
   }
   public set_NOTICE_color(color: string): void {
-    this.levels['NOTICE'] = color
+    this.levels["NOTICE"] = color
   }
 
   public set_use_mail(yn: boolean): void {
     this.use_mail = yn
   }
   public set_EMERGENCY_mail(yn: boolean): void {
-    this.levels['EMERGENCY'] = yn
+    this.levels["EMERGENCY"] = yn
   }
   public set_ALERT_mail(yn: boolean): void {
-    this.levels['ALERT'] = yn
+    this.levels["ALERT"] = yn
   }
   public set_CRITICAL_mail(yn: boolean): void {
-    this.levels['CRITICAL'] = yn
+    this.levels["CRITICAL"] = yn
   }
   public set_ERROR_mail(yn: boolean): void {
-    this.levels['ERROR'] = yn
+    this.levels["ERROR"] = yn
   }
   public set_WARNING_mail(yn: boolean): void {
-    this.levels['WARNING'] = yn
+    this.levels["WARNING"] = yn
   }
   public set_INFO_mail(yn: boolean): void {
-    this.levels['INFO'] = yn
+    this.levels["INFO"] = yn
   }
   public set_DEBUG_mail(yn: boolean): void {
-    this.levels['DEBUG'] = yn
+    this.levels["DEBUG"] = yn
   }
   public set_NOTICE_mail(yn: boolean): void {
-    this.levels['NOTICE'] = yn
+    this.levels["NOTICE"] = yn
   }
 
   public log(level_label: Levels, text: string) {
