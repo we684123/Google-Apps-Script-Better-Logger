@@ -32,13 +32,13 @@ export class BetterLogger {
 
   constructor() {
     this.description =
-      '這是一個Logger，用法請看https://github.com/we684123/Google_Apps_Script_Logger'
-    this.sheet_id = ''
+      "這是一個Logger，用法請看https://github.com/we684123/Google_Apps_Script_Logger"
+    this.sheet_id = ""
     this.sheet_page_name = "Log"
     this.logfmt =
-      '%{datefmt} - %{user} - %{levelname} : %{message}'
+      "%{datefmt} - %{user} - %{levelname} : %{message}"
     // 暫時只有這四個
-    this.GMT = 'GMT+8'
+    this.GMT = "GMT+8"
     this.datefmt = "yyyy.MM.dd HH:mm:ss z"
     // 格式設定看這裡
     // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
@@ -111,7 +111,7 @@ export class BetterLogger {
     sheet_id: string,
     sheet_page_name: string = "Log",
     logfmt: string =
-      '%{datefmt} %{user} %{levelname} : %{message}',
+      "%{datefmt} %{user} %{levelname} : %{message}",
     GMT: string,
     datefmt: string = "yyyy.MM.dd G 'at' HH:mm:ss z",
     level: number = 30
@@ -125,7 +125,7 @@ export class BetterLogger {
     this.level_label = "WARNING"
     let rt = this.get_level_correspond(level, 0)
     if (rt == undefined) {
-      throw (new Error('level is not allow!'))
+      throw (new Error("level is not allow!"))
     }
     this.level = rt
     this.use_sheet = false
@@ -167,7 +167,7 @@ export class BetterLogger {
   public set_level(level: string): void {
     let rt = this.get_level_correspond(level, 0)
     if (rt == undefined) {
-      throw (new Error('level is not allow!'))
+      throw (new Error("level is not allow!"))
     }
     this.level = rt
   }
@@ -293,7 +293,7 @@ export class BetterLogger {
 
   private correspond(keys_list: any[], values_list: any[]) {
     if (keys_list.length != values_list.length) {
-      throw (new Error('keys_list and values_list length not equal.'))
+      throw (new Error("keys_list and values_list length not equal."))
     }
     let correspond_aims = {}
     for (let index = 0; index < keys_list.length; index++) {
@@ -336,7 +336,7 @@ export class BetterLogger {
               console.info(this.ass_msg(level_label, text));
               break;
             default:
-              throw (new Error('No have this level!'));
+              throw (new Error("No have this level!"));
           }
         }
         handle_level(level, text)
@@ -387,7 +387,7 @@ export class BetterLogger {
 
   private log_by_sheet( // todo
     sheet_key: string,
-    page: string = 'log',
+    page: string = "log",
     text_array: string[] = [],
     level_label: string
   ) {

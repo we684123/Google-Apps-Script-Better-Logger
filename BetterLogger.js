@@ -4,13 +4,13 @@ exports.BetterLogger = void 0;
 var BetterLogger = /** @class */ (function () {
     function BetterLogger() {
         this.description =
-            '這是一個Logger，用法請看https://github.com/we684123/Google_Apps_Script_Logger';
-        this.sheet_id = '';
+            "這是一個Logger，用法請看https://github.com/we684123/Google_Apps_Script_Logger";
+        this.sheet_id = "";
         this.sheet_page_name = "Log";
         this.logfmt =
-            '%{datefmt} - %{user} - %{levelname} : %{message}';
+            "%{datefmt} - %{user} - %{levelname} : %{message}";
         // 暫時只有這四個
-        this.GMT = 'GMT+8';
+        this.GMT = "GMT+8";
         this.datefmt = "yyyy.MM.dd HH:mm:ss z";
         // 格式設定看這裡
         // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
@@ -60,7 +60,7 @@ var BetterLogger = /** @class */ (function () {
     };
     BetterLogger.prototype.set_config = function (sheet_id, sheet_page_name, logfmt, GMT, datefmt, level) {
         if (sheet_page_name === void 0) { sheet_page_name = "Log"; }
-        if (logfmt === void 0) { logfmt = '%{datefmt} %{user} %{levelname} : %{message}'; }
+        if (logfmt === void 0) { logfmt = "%{datefmt} %{user} %{levelname} : %{message}"; }
         if (datefmt === void 0) { datefmt = "yyyy.MM.dd G 'at' HH:mm:ss z"; }
         if (level === void 0) { level = 30; }
         this.sheet_id = sheet_id;
@@ -72,7 +72,7 @@ var BetterLogger = /** @class */ (function () {
         this.level_label = "WARNING";
         var rt = this.get_level_correspond(level, 0);
         if (rt == undefined) {
-            throw (new Error('level is not allow!'));
+            throw (new Error("level is not allow!"));
         }
         this.level = rt;
         this.use_sheet = false;
@@ -106,7 +106,7 @@ var BetterLogger = /** @class */ (function () {
     BetterLogger.prototype.set_level = function (level) {
         var rt = this.get_level_correspond(level, 0);
         if (rt == undefined) {
-            throw (new Error('level is not allow!'));
+            throw (new Error("level is not allow!"));
         }
         this.level = rt;
     };
@@ -221,7 +221,7 @@ var BetterLogger = /** @class */ (function () {
     };
     BetterLogger.prototype.correspond = function (keys_list, values_list) {
         if (keys_list.length != values_list.length) {
-            throw (new Error('keys_list and values_list length not equal.'));
+            throw (new Error("keys_list and values_list length not equal."));
         }
         var correspond_aims = {};
         for (var index = 0; index < keys_list.length; index++) {
@@ -263,7 +263,7 @@ var BetterLogger = /** @class */ (function () {
                             console.info(_this.ass_msg(level_label, text));
                             break;
                         default:
-                            throw (new Error('No have this level!'));
+                            throw (new Error("No have this level!"));
                     }
                 };
                 handle_level(level, text);
@@ -311,7 +311,7 @@ var BetterLogger = /** @class */ (function () {
     };
     BetterLogger.prototype.log_by_sheet = function (// todo
     sheet_key, page, text_array, level_label) {
-        if (page === void 0) { page = 'log'; }
+        if (page === void 0) { page = "log"; }
         if (text_array === void 0) { text_array = []; }
         // console.log(level_label);
         var SpreadSheet = SpreadsheetApp.openById(sheet_key);
