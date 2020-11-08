@@ -8,7 +8,7 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 
 * * *
 
-# 目錄 index
+## 目錄 index
 
 -   [如何使用 Getting Started](#如何使用-getting-started)
 -   [概觀 Overview](#概觀-Overview)
@@ -16,11 +16,11 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 -   [元件說明 Component Description](#元件說明-Component-Description)
 -   [待做 TODO](#待做-TODO)
 
-# 如何使用 Getting Started
+## 如何使用 Getting Started
 
-## 安裝(install)
+### 安裝(install)
 
-### Google Apps Script Library install
+#### Google Apps Script Library install
 打開 gs 編輯頁面  
 -> "資源"  
 -> "程式庫"  
@@ -36,7 +36,7 @@ Open Script Editor.
 -> Add library  
 -> select lastest version and save    
 
-### npm install
+#### npm install
 ```
 npm i google-apps-script-better-logger
 ```
@@ -45,7 +45,7 @@ npm i google-apps-script-better-logger
 
 ![Imgur](https://imgur.com/o1MOYm1.png)
 
-## 一般使用(General use)
+### 一般使用(General use)
 
 code：
 
@@ -86,7 +86,7 @@ result：
 
 * * *
 
-## 使用sheet (use sheet)
+### 使用sheet (use sheet)
 
 code：
 
@@ -124,7 +124,7 @@ result：
 
 * * *
 
-## 使用mail通知(use mail notice)
+### 使用mail通知(use mail notice)
 
 code：
 
@@ -164,7 +164,7 @@ result：
 
 <!-- <br> -->
 
-# 概觀 Overview
+## 概觀 Overview
 
 | 功能 Methods                                |                                                                 說明 Explanation                                                                  |
 | ------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -207,9 +207,9 @@ result：
 
 * * *
 
-# 功能詳細說明 Function Description
+## 功能詳細說明 Function Description
 
-## set_config
+### set_config
 
 設定 Logger。
 
@@ -217,11 +217,11 @@ result：
 set_config(sheet_id, sheet_page_name, logfmt, GMT, datefmt, level)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |                                       name                                       |            type            |                                                                  Description                                                                  |
 | :------------------------------------------------------------------------------: | :------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -232,7 +232,7 @@ void
 |                               [datefmt](#datefmt)                                |           string           |                                                       logger的log格式中 時間的紀錄方式                                                        |
 |                                      level                                       | string \| number \| Levels |                                     紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式                                      |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -249,7 +249,7 @@ function t4() {
 }
 ```
 
-## set_logfmt
+### set_logfmt
 
 設定log格式。
 
@@ -257,17 +257,17 @@ function t4() {
 set_logfmt(logfmt)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |       name        |  type  |   Description   |
 | :---------------: | :----: | :-------------: |
 | [logfmt](#logfmt) | string | logger的log格式 |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -277,7 +277,7 @@ function t4() {
 }
 ```
 
-## set_GMT
+### set_GMT
 
 設定 Logger [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) 時區。
 
@@ -285,17 +285,17 @@ function t4() {
 set_GMT(GMT)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |                                       name                                       |  type  | Description |
 | :------------------------------------------------------------------------------: | :----: | :---------: |
 | [GMT](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) | string |   GMT時區   |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -305,23 +305,23 @@ function t4() {
 }
 ```
 
-## set_use_console
+### set_use_console
 
 用來開關 Stackdriver Logging，預設 true。
 
     set_use_console(boolean)
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true or false |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -331,23 +331,23 @@ function t4() {
 }
 ```
 
-## set_use_sheet
+### set_use_sheet
 
 用來開關 sheet log，預設 false。
 
     set_use_sheet(boolean)
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true or false |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -357,7 +357,7 @@ function t4() {
 }
 ```
 
-## set_sheet_id
+### set_sheet_id
 
 用來設定 sheet id。
 
@@ -365,17 +365,17 @@ function t4() {
 set_sheet_id(id)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 | name  |  type  |                                                                  Description                                                                  |
 | :---: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 |  id   | string | <https://docs.google.com/spreadsheets/d/> `1lqlqztKroBwDZ--VxoYN9Hh_BuwOzbdbowltI7yf2N4` /edit 網址中的這一段 **(介於 "d/" 跟 "/edit" 之間)** |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -385,7 +385,7 @@ function t4() {
 }
 ```
 
-## set_sheet_page_name
+### set_sheet_page_name
 
 用來設定 sheet page name。  
 如果沒有在 sheet 中發現指定的 page 名稱，則會自己新增一個。    
@@ -394,17 +394,17 @@ function t4() {
 set_sheet_page_name(page_name)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |   name    |  type  |            Description             |
 | :-------: | :----: | :--------------------------------: |
 | page_name | string | 使用sheet中的哪個page，預設是'log' |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -414,7 +414,7 @@ function t4() {
 }
 ```
 
-## set_sheet_log_slice
+### set_sheet_log_slice
 
 設定 log 進 sheet 時，要不要分欄輸入(A欄、B欄...)  
 如果是 false 就只輸出1欄。
@@ -423,17 +423,17 @@ function t4() {
 set_sheet_log_slice(boolean)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |  name   |  type   |                  Description                  |
 | :-----: | :-----: | :-------------------------------------------: |
 | boolean | boolean | 設定log進sheet時，要不要分欄輸入(A欄、B欄...) |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -443,7 +443,7 @@ function t4() {
 }
 ```
 
-## set_level
+### set_level
 
 設定 log level。
 
@@ -451,17 +451,17 @@ function t4() {
 set_level(level)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 | name  |                 type                  |                             Description                              |
 | :---: | :-----------------------------------: | :------------------------------------------------------------------: |
 | level | string \| number \| [Levels](#Levels) | 紀錄的等級，可以接受 'EMERGENCY'、60、logger.levels.NOTICE 這3種方式 |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -471,23 +471,23 @@ function t4() {
 }
 ```
 
-## set_XXX_color
+### set_XXX_color
 
 設定 XXX 在 sheet log 時的顏色。
 
     set_XXX_color(color)
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 | name  |  type  |                                      Description                                       |
 | :---: | :----: | :------------------------------------------------------------------------------------: |
 | color | string | [十六進位字串顏色](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E9%A2%9C%E8%89%B2) |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -498,7 +498,7 @@ function t4() {
 }
 ```
 
-## set_use_mail
+### set_use_mail
 
 設定是否在 log 時寄送 eamil。  
 預設是 false .    
@@ -507,17 +507,17 @@ function t4() {
 set_use_mail(boolean)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true of false |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -527,7 +527,7 @@ function t4() {
 }
 ```
 
-## set_XXX_mail
+### set_XXX_mail
 
 設定指定 log level 是否寄送 Email。
 如果未指定，則只有 EMERGENCY、ALERT、NOTICE 這三個會寄送。詳見[Levels](#Levels)
@@ -536,17 +536,17 @@ function t4() {
 set_XXX_mail(boolean)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |  name   |  type   |  Description  |
 | :-----: | :-----: | :-----------: |
 | boolean | boolean | true of false |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -556,7 +556,7 @@ function t4() {
 }
 ```
 
-## set_application
+### set_application
 
 設定指定寄送 Email 時，標題的名稱。
 預設 "Google_Apps_Script_Logger"。
@@ -565,17 +565,17 @@ function t4() {
 set_application(subject)
 ```
 
-### Return
+#### Return
 
 void
 
-### Parameters
+#### Parameters
 
 |  name   |  type  |   Description    |
 | :-----: | :----: | :--------------: |
 | subject | string | 寄信時的標題名稱 |
 
-### Explanation
+#### Explanation
 
 ```javascript
 function t4() {
@@ -587,13 +587,13 @@ function t4() {
 
 * * *
 
-# 元件說明 Component Description
+## 元件說明 Component Description
 
-## logfmt
+### logfmt
 
 logfmt 預設是 "%{datefmt} - %{user} - %{levelname} : %{message}"
 
-### 種類
+#### 種類
 
 |   名稱    |                     說明                      |
 | :-------: | :-------------------------------------------: |
@@ -602,12 +602,12 @@ logfmt 預設是 "%{datefmt} - %{user} - %{levelname} : %{message}"
 | levelname |      是log的等級，詳見[levels](#levels)       |
 |  message  |             是你想記錄的訊息文字              |
 
-## datefmt
+### datefmt
 
 datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 詳細請看 [SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)
 
-## Levels
+### Levels
 
 |   名稱    | 等級  | 說明  | 預設是否寄email |
 | :-------: | :---: | :---: | :-------------: |
@@ -622,7 +622,7 @@ datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 
 * * *
 
-# 待做 TODO
+## 待做 TODO
 
 -   將 log level 完整對應到 Stackdriver Logging 上，不再用其他代替
 -   考慮做 file 版記錄方式
