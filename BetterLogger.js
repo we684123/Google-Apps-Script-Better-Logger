@@ -15,35 +15,35 @@ var BetterLogger = /** @class */ (function () {
         // 格式設定看這裡
         // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
         this.levels = {
-            'EMERGENCY': 70 /* 'EMERGENCY' */,
-            'ALERT': 60 /* 'ALERT' */,
-            'CRITICAL': 50 /* 'CRITICAL' */,
-            'ERROR': 40 /* 'ERROR' */,
-            'WARNING': 30 /* 'WARNING' */,
-            'INFO': 20 /* 'INFO' */,
-            'DEBUG': 10 /* 'DEBUG' */,
-            'NOTICE': 0 /* 'NOTICE' */
+            "EMERGENCY": 70 /* 'EMERGENCY' */,
+            "ALERT": 60 /* 'ALERT' */,
+            "CRITICAL": 50 /* 'CRITICAL' */,
+            "ERROR": 40 /* 'ERROR' */,
+            "WARNING": 30 /* 'WARNING' */,
+            "INFO": 20 /* 'INFO' */,
+            "DEBUG": 10 /* 'DEBUG' */,
+            "NOTICE": 0 /* 'NOTICE' */
         };
         this.levels_colors = {
-            'EMERGENCY': "#ff0000",
-            'ALERT': "#980000",
-            'CRITICAL': "#e06666",
-            'ERROR': "#f6b26b",
-            'WARNING': "#ffe599",
-            'INFO': "#93c47d",
-            'DEBUG': "#76a5af",
-            'NOTICE': "#9fc5e8"
+            "EMERGENCY": "#ff0000",
+            "ALERT": "#980000",
+            "CRITICAL": "#e06666",
+            "ERROR": "#f6b26b",
+            "WARNING": "#ffe599",
+            "INFO": "#93c47d",
+            "DEBUG": "#76a5af",
+            "NOTICE": "#9fc5e8"
         };
         this.use_mail = false;
         this.levels_use_mail = {
-            'EMERGENCY': true,
-            'ALERT': true,
-            'CRITICAL': false,
-            'ERROR': false,
-            'WARNING': false,
-            'INFO': false,
-            'DEBUG': false,
-            'NOTICE': true
+            "EMERGENCY": true,
+            "ALERT": true,
+            "CRITICAL": false,
+            "ERROR": false,
+            "WARNING": false,
+            "INFO": false,
+            "DEBUG": false,
+            "NOTICE": true
         };
         this.mail_subject_fmt = "%{application} %{log_level}";
         // 暫時就這2個
