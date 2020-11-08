@@ -39,7 +39,7 @@ Open Script Editor.
 
 #### npm install
 
-```
+```allowEmpty
 npm i google-apps-script-better-logger
 ```
 
@@ -311,7 +311,9 @@ function t4() {
 
 用來開關 Stackdriver Logging，預設 true。
 
-    set_use_console(boolean)
+```javascript
+set_use_console(boolean);
+```
 
 #### Return
 
@@ -337,7 +339,9 @@ function t4() {
 
 用來開關 sheet log，預設 false。
 
-    set_use_sheet(boolean)
+```javascript
+set_use_sheet(boolean);
+```
 
 #### Return
 
@@ -477,7 +481,9 @@ function t4() {
 
 設定 XXX 在 sheet log 時的顏色。
 
-    set_XXX_color(color)
+```javascript
+set_XXX_color(color);
+```
 
 #### Return
 
