@@ -40,8 +40,8 @@ Open Script Editor.
 ```
 npm i google-apps-script-better-logger
 ```
-⚠️npm 安裝僅提供輸入提示，並無法在local端執行！⚠️
-⚠️npm install only support IDE input prompt, can't run code on local!⚠️
+⚠️npm 安裝僅提供輸入提示，並無法在local端執行！⚠️    
+⚠️npm install only support IDE input prompt, can't run code on local!⚠️    
 
 ![Imgur](https://imgur.com/o1MOYm1.png)
 
