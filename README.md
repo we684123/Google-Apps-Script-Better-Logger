@@ -10,11 +10,11 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 
 ## 目錄 index
 
-- [如何使用 Getting Started](#如何使用-getting-started)
-- [概觀 Overview](#概觀-Overview)
-- [功能詳細說明 Methods Detailed description](#功能詳細說明-Methods-Detailed-description)
-- [元件說明 Component Description](#元件說明-Component-Description)
-- [待做 TODO](#待做-TODO)
+-   [如何使用 Getting Started](#如何使用-getting-started)
+-   [概觀 Overview](#概觀-Overview)
+-   [功能詳細說明 Methods Detailed description](#功能詳細說明-Methods-Detailed-description)
+-   [元件說明 Component Description](#元件說明-Component-Description)
+-   [待做 TODO](#待做-TODO)
 
 ## 如何使用 Getting Started
 
@@ -632,6 +632,6 @@ datefmt 預設是 "yyyy.MM.dd HH:mm:ss z"
 
 ## 待做 TODO
 
-- 將 log level 完整對應到 Stackdriver Logging 上，不再用其他代替
-- 考慮做 file 版記錄方式
-- sheet log 是否要做分天、月 log?
+-   將 log level 完整對應到 Stackdriver Logging 上，不再用其他代替
+-   考慮做 file 版記錄方式
+-   sheet log 是否要做分天、月 log?
