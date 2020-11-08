@@ -1,4 +1,4 @@
-declare const enum Levels {
+export declare const enum Levels {
     EMERGENCY = 70,
     ALERT = 60,
     CRITICAL = 50,
@@ -8,7 +8,7 @@ declare const enum Levels {
     DEBUG = 10,
     NOTICE = 0
 }
-export default class BetterLogger {
+export declare class BetterLogger {
     description: string;
     sheet_id: string;
     sheet_page_name: string;
@@ -75,4 +75,3 @@ export default class BetterLogger {
     private do_log;
     private log_by_sheet;
 }
-export {};
