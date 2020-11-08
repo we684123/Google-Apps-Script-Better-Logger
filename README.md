@@ -1,5 +1,7 @@
 # Google Apps Script Better Logger
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/356114038c8f433f8c1bb658ffc71495)](https://www.codacy.com/gh/we684123/Google-Apps-Script-Better-Logger/dashboard?utm_source=github.com&utm_medium=referral&utm_content=we684123/Google-Apps-Script-Better-Logger&utm_campaign=Badge_Grade)
+
 一個比原生 console.log 好一些的 Logger  
 可以用 sheet、Stackdriver Logging 紀錄，還可以用 mail 通知
 
