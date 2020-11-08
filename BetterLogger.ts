@@ -78,6 +78,7 @@ export class BetterLogger {
     this.application = "Google_Apps_Script_Logger"
     this.level_label = "WARNING"
     this.level = this.get_level_correspond(this.level_label)
+    // ts-ignore
     this.user = Session.getActiveUser().getEmail(); // todo
     this.use_sheet = false
     this.use_console = true
@@ -275,6 +276,7 @@ export class BetterLogger {
   }
 
   private get_fmtdate() {
+    // ts-ignore
     return Utilities.formatDate(new Date(), this.GMT, this.datefmt) // todo
   }
 
@@ -366,6 +368,7 @@ export class BetterLogger {
       if (this.use_mail) {
         if (this.levels_use_mail[level_label]) {
           try {
+            // ts-ignore
             GmailApp.sendEmail( // todo
               this.user,
               this.ass_subject(level_label),
@@ -392,6 +395,7 @@ export class BetterLogger {
     level_label: string
   ) {
     // console.log(level_label);
+    // ts-ignore
     const SpreadSheet = SpreadsheetApp.openById(sheet_key);
     let sheet = SpreadSheet.getSheetByName(page);
     if (sheet == null) {

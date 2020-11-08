@@ -50,6 +50,7 @@ var BetterLogger = /** @class */ (function () {
         this.application = "Google_Apps_Script_Logger";
         this.level_label = "WARNING";
         this.level = this.get_level_correspond(this.level_label);
+        // ts-ignore
         this.user = Session.getActiveUser().getEmail(); // todo
         this.use_sheet = false;
         this.use_console = true;
@@ -205,6 +206,7 @@ var BetterLogger = /** @class */ (function () {
             .replace(/%{log_level}/g, level_label);
     };
     BetterLogger.prototype.get_fmtdate = function () {
+        // ts-ignore
         return Utilities.formatDate(new Date(), this.GMT, this.datefmt); // todo
     };
     BetterLogger.prototype.get_level_correspond = function (level, type) {
@@ -298,6 +300,7 @@ var BetterLogger = /** @class */ (function () {
             if (this.use_mail) {
                 if (this.levels_use_mail[level_label]) {
                     try {
+                        // ts-ignore
                         GmailApp.sendEmail(// todo
                         this.user, this.ass_subject(level_label), this.ass_msg(level_label, text));
                         console.log("send a Email ,\n               " + this.user + ",\n               " + this.ass_subject(level_label) + ",\n               " + this.ass_msg(level_label, text));
@@ -314,6 +317,7 @@ var BetterLogger = /** @class */ (function () {
         if (page === void 0) { page = "log"; }
         if (text_array === void 0) { text_array = []; }
         // console.log(level_label);
+        // ts-ignore
         var SpreadSheet = SpreadsheetApp.openById(sheet_key);
         var sheet = SpreadSheet.getSheetByName(page);
         if (sheet == null) {
