@@ -20,6 +20,7 @@ You can use sheet, Stackdriver Logging records, you can also use mail to notify.
 
 ## 安裝(install)
 
+### Google Apps Script Library install
 打開 gs 編輯頁面  
 -> "資源"  
 -> "程式庫"  
@@ -34,6 +35,15 @@ Open Script Editor.
 -> Paste Script ID `1R4kOenBr5gSIcxUbCYegM4pStj0JzjXdA2jryW5s9J2Phg_ebaykmEgo` to box  
 -> Add library  
 -> select lastest version and save    
+
+### npm install
+```
+npm i google-apps-script-better-logger
+```
+⚠️npm 安裝僅提供輸入提示，並無法在local端執行！⚠️
+⚠️npm install only support IDE input prompt, can't run code on local!⚠️
+
+![Imgur](https://imgur.com/o1MOYm1.png)
 
 ## 一般使用(General use)
 
